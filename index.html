@@ -1,0 +1,3181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Microsoft Internet Explorer 4.0 - Cyberspace 1998 (RetroPop 98)</title>
+  <link rel="stylesheet" href="./98.css">
+  <style>
+    /* ========================================================
+       WINDOWS 98 DESKTOP & GLOBAL ENVIRONMENT
+       ======================================================== */
+    :root {
+      --size-units: 14px;
+      --win-bg: #c0c0c0;
+      --teal: #008080;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background-color: var(--teal);
+      background-image: 
+        radial-gradient(rgba(0, 0, 0, 0.15) 1px, transparent 1px),
+        radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+      background-size: 20px 20px;
+      background-position: 0 0, 10px 10px;
+      font-family: "Pixelated MS Sans Serif", Arial, sans-serif;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    /* Comic Sans Mode toggle */
+    body.comic-sans, body.comic-sans * {
+      font-family: "Comic Sans MS", "Chalkboard SE", "Comic Neue", cursive !important;
+    }
+
+    /* Canvas for Matrix Rain */
+    #matrix-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 1;
+      display: none;
+      opacity: 0.85;
+    }
+
+    /* Autoplay Prompt Banner (Displays if browser requires user gesture) */
+    #autoplay-banner {
+      position: fixed;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #ffff00;
+      color: #000080;
+      border: 2px outset #ff0000;
+      padding: 6px 18px;
+      font-weight: bold;
+      font-size: 12px;
+      box-shadow: 4px 4px 12px rgba(0,0,0,0.6);
+      z-index: 10001;
+      cursor: pointer;
+      display: none;
+      animation: retroPulse 0.9s infinite alternate;
+    }
+
+    @keyframes retroPulse {
+      from { transform: translateX(-50%) scale(0.98); }
+      to { transform: translateX(-50%) scale(1.02); }
+    }
+
+    /* Desktop Icons Grid with wrapping into multiple columns */
+    #desktop-icons {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      align-content: flex-start;
+      gap: 14px 22px;
+      max-height: calc(100vh - 55px);
+      z-index: 5;
+    }
+
+    .desktop-icon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 80px;
+      padding: 4px 2px;
+      cursor: pointer;
+      text-align: center;
+      border: 1px dotted transparent;
+      transition: background-color 0.1s;
+    }
+
+    .desktop-icon:hover {
+      background-color: rgba(0, 0, 128, 0.28);
+    }
+
+    .desktop-icon:active, .desktop-icon.selected {
+      background-color: #000080;
+      border-color: #ffff00;
+    }
+
+    .desktop-icon .icon-img {
+      font-size: 32px;
+      line-height: 1;
+      filter: drop-shadow(1px 1px 0 #000);
+      margin-bottom: 4px;
+    }
+
+    .desktop-icon .icon-label {
+      color: #fff;
+      font-size: 11px;
+      text-shadow: 1px 1px 2px #000;
+      word-break: break-word;
+      padding: 1px 3px;
+      border-radius: 2px;
+    }
+
+    .desktop-icon.selected .icon-label {
+      background-color: #000080;
+      color: #fff;
+    }
+
+    /* ========================================================
+       WINDOW MANAGEMENT & POSITIONING
+       ======================================================== */
+    .app-window {
+      position: absolute;
+      box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #dfdfdf, inset -2px -2px grey, inset 2px 2px #fff;
+      background: #c0c0c0;
+      padding: 3px;
+      z-index: 10;
+    }
+
+    .app-window.active-window .title-bar {
+      background: linear-gradient(90deg, navy, #1084d0);
+    }
+
+    .app-window:not(.active-window) .title-bar {
+      background: linear-gradient(90deg, #7e7e7e, #b5b5b5);
+    }
+
+    .title-bar {
+      cursor: grab;
+      user-select: none;
+    }
+
+    .title-bar:active {
+      cursor: grabbing;
+    }
+
+    /* Custom styles imported from uploaded windows98buttons.html */
+    .retro-box-style {
+      --shadow-offset: 2px;
+      --shadow-length: 1px;
+      --box-shadow-fancy: var(--shadow-offset) var(--shadow-offset) 0 var(--shadow-length) #fff inset,
+        calc(-1 * var(--shadow-offset)) calc(-1 * var(--shadow-offset)) 0 #7e7e7e inset,
+        var(--shadow-offset) var(--shadow-offset) 0 var(--shadow-length) #000;
+      --box-shadow-small: 1px 1px 0 1px #fff inset, -1px -1px 0 1px #7e7e7e inset, 1px 1px 0 1px #000;
+      box-shadow: var(--box-shadow-fancy);
+      border-radius: 2px;
+      background: #bebebe;
+      position: relative;
+    }
+
+    .retro-custom-top {
+      height: 26px;
+      background: linear-gradient(90deg, #00007e, #0000ff 100%);
+      border-radius: 2px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 0 4px;
+      margin-bottom: 6px;
+    }
+
+    .retro-custom-top .window-title {
+      color: white;
+      font-family: "Courier New", monospace;
+      font-weight: bold;
+      margin-left: 4px;
+      margin-right: auto;
+      font-size: 12px;
+    }
+
+    .retro-custom-top .icon-btn {
+      height: 18px;
+      width: 18px;
+      background: #bebebe;
+      margin-left: 3px;
+      box-shadow: 1px 1px 0 1px #fff inset, -1px -1px 0 1px #7e7e7e inset, 1px 1px 0 1px #000;
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Courier New", monospace;
+      font-size: 11px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .retro-custom-top .icon-btn:hover {
+      filter: brightness(1.1);
+    }
+
+    /* Stars.bmp pattern inspired by Tomas Petricek's Popup from Hell */
+    .stars-bg {
+      background-color: #000;
+      background-image: 
+        radial-gradient(1.5px 1.5px at 20px 30px, #ffffff, transparent),
+        radial-gradient(1px 1px at 50px 80px, #ffffff, transparent),
+        radial-gradient(1.5px 1.5px at 90px 40px, #ffffff, transparent),
+        radial-gradient(1px 1px at 140px 100px, #ffffff, transparent),
+        radial-gradient(2px 2px at 180px 30px, #ffffff, transparent),
+        radial-gradient(1px 1px at 230px 120px, #ffffff, transparent),
+        radial-gradient(1.5px 1.5px at 280px 70px, #ffffff, transparent),
+        radial-gradient(1px 1px at 330px 140px, #ffffff, transparent),
+        radial-gradient(2px 2px at 370px 35px, #ffffff, transparent);
+      background-size: 400px 160px;
+      color: #ffffff;
+      border: 2px inset #7e7e7e;
+    }
+
+    /* Main Internet Explorer Window */
+    #ie-window {
+      top: 18px;
+      left: 195px;
+      width: clamp(520px, 58vw, 840px);
+      max-height: calc(100vh - 55px);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ie-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 5px;
+      padding: 4px;
+      border-bottom: 2px groove #dfdfdf;
+      background: #c0c0c0;
+    }
+
+    .ie-menu-bar {
+      display: flex;
+      gap: 12px;
+      font-size: 11px;
+      padding: 2px 6px;
+      border-bottom: 1px solid #7e7e7e;
+    }
+
+    .ie-menu-item {
+      cursor: pointer;
+    }
+
+    .ie-menu-item u {
+      text-decoration: none;
+      border-bottom: 1px solid #000;
+    }
+
+    .ie-address-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      width: 100%;
+      padding: 2px 4px;
+    }
+
+    .ie-address-input {
+      flex: 1;
+      height: 22px;
+      font-size: 12px;
+      font-family: "Courier New", monospace;
+      padding: 2px 6px;
+      background: #fff;
+    }
+
+    .ie-content-area {
+      background: #ffffff;
+      padding: 12px;
+      overflow-y: auto;
+      max-height: 60vh;
+      box-shadow: inset 1px 1px 0 #000, inset -1px -1px 0 #dfdfdf;
+    }
+
+    /* Marquee styling */
+    .retro-marquee {
+      background: #000080;
+      color: #ffff00;
+      padding: 4px;
+      font-weight: bold;
+      font-size: 13px;
+      font-family: "Courier New", monospace;
+      margin-bottom: 14px;
+      border: 2px inset #7e7e7e;
+    }
+
+    /* Chaos Control Panel inside IE */
+    .chaos-panel {
+      margin-top: 14px;
+      padding: 10px;
+      background: #ebebeb;
+      border: 2px groove #fff;
+    }
+
+    .chaos-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    /* Media Player Mini Window */
+    #media-window {
+      bottom: 45px;
+      right: 20px;
+      width: 320px;
+      z-index: 45;
+    }
+
+    .visualizer-display {
+      height: 48px;
+      background: #000;
+      display: flex;
+      align-items: flex-end;
+      gap: 3px;
+      padding: 4px;
+      margin-bottom: 8px;
+      border: 2px inset #444;
+    }
+
+    .vis-bar {
+      flex: 1;
+      background: linear-gradient(to top, #00ff00 60%, #ffff00 80%, #ff0000 100%);
+      height: 20%;
+      transition: height 0.08s ease-in-out;
+    }
+
+    /* Popups Container & Floating Popups */
+    #popups-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 100;
+    }
+
+    .popup-window {
+      position: absolute;
+      pointer-events: auto;
+      min-width: 280px;
+      max-width: 460px;
+      animation: popIn 0.18s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+      filter: drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.45));
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.65); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .popup-body-inner {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 6px 2px;
+    }
+
+    .popup-icon-badge {
+      font-size: 32px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .popup-timer-bar-wrap {
+      width: 100%;
+      height: 6px;
+      background: #7e7e7e;
+      margin-top: 8px;
+      position: relative;
+      overflow: hidden;
+      border: 1px inset #fff;
+    }
+
+    .popup-timer-bar {
+      height: 100%;
+      background: #000080;
+      width: 100%;
+      transition: width linear;
+    }
+
+    .blink-text {
+      animation: retroBlink 0.8s infinite;
+      font-weight: bold;
+    }
+
+    @keyframes retroBlink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+
+    /* Evasive Button that escapes mouse */
+    .evasive-target {
+      transition: transform 0.15s ease-out;
+      position: relative;
+    }
+
+    /* ========================================================
+       THE 3D ROTATING BANNER BADGE (FROM BESTVIEWEDWITH.HTML)
+       ======================================================== */
+    #BestViewedIn {
+      display: block;
+      margin: 18px auto;
+      width: calc(var(--size-units) * 8.8);
+      height: calc(var(--size-units) * 3.1);
+      transform-style: preserve-3d;
+    }
+
+    #BestViewedIn:focus-within {
+      background-color: #000;
+      box-shadow: 0 0 10px #000;
+    }
+
+    #BestViewedIn a {
+      display: none;
+      perspective: calc(var(--size-units) * 26.4);
+      text-decoration: none;
+      color: #000;
+    }
+
+    #BestViewedIn.firefox .firefox,
+    #BestViewedIn.chrome .chrome,
+    #BestViewedIn.edge .edge,
+    #BestViewedIn.safari .safari,
+    #BestViewedIn.any .any,
+    #BestViewedIn.ie .ie {
+      display: block;
+    }
+
+    .box {
+      display: block;
+      width: calc(var(--size-units) * 8.8);
+      height: calc(var(--size-units) * 3.1);
+      position: relative;
+      transform-style: preserve-3d;
+      transform: translateZ(calc(var(--size-units) * -1.55)) rotateX(45deg);
+      animation-duration: 7s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+      animation-direction: reverse;
+      animation-name: spin;
+    }
+
+    .box.stepped {
+      animation-name: steppedSpin;
+    }
+
+    .box.stop {
+      animation: none;
+    }
+
+    .face {
+      box-sizing: border-box;
+      position: absolute;
+      width: calc(var(--size-units) * 8.8);
+      height: calc(var(--size-units) * 3.1);
+      overflow: hidden;
+    }
+
+    .face.fr { transform: rotateY(0deg) translateZ(calc(var(--size-units) * 1.55)); }
+    .face.ba { transform: rotateY(180deg) translateZ(calc(var(--size-units) * 1.55)) rotateZ(180deg); }
+    .face.to { transform: rotateX(90deg) translateZ(calc(var(--size-units) * -1.55)) rotateX(180deg); }
+    .face.bo { transform: rotateX(-90deg) translateZ(calc(var(--size-units) * -1.55)) rotateX(180deg); }
+
+    @keyframes spin {
+      0% { transform: translateZ(calc(var(--size-units) * -1.55)) rotateX(360deg); }
+      25% { transform: translateZ(calc(var(--size-units) * -1.55)) rotateX(270deg); }
+      50% { transform: translateZ(calc(var(--size-units) * -1.55)) rotateX(180deg); }
+      75% { transform: translateZ(calc(var(--size-units) * -1.55)) rotateX(90deg); }
+      100% { transform: translateZ(calc(var(--size-units) * -1.55)) rotateX(0deg); }
+    }
+
+    @keyframes steppedSpin {
+      0%, 10% { transform: translateZ(calc(var(--size-units) * -1.55)) rotateX(360deg); }
+      25%, 35% { transform: translateZ(calc(var(--size-units) * -1.55)) rotateX(270deg); }
+      50%, 60% { transform: translateZ(calc(var(--size-units) * -1.55)) rotateX(180deg); }
+      75%, 85% { transform: translateZ(calc(var(--size-units) * -1.55)) rotateX(90deg); }
+      100% { transform: translateZ(calc(var(--size-units) * -1.55)) rotateX(0deg); }
+    }
+
+    /* Internet Explorer Face Styles */
+    .ie .face {
+      background-color: #ccc;
+      font-size: calc(var(--size-units) * 0.9);
+      font-weight: bold;
+      padding: calc(var(--size-units) * 0.3) calc(var(--size-units) * 0.2) 0;
+      border: calc(var(--size-units) * 0.2) outset rgba(255, 255, 255, 0.5);
+    }
+
+    .ie .face.fr, .ie .face.ba { line-height: 1.1; text-align: center; }
+
+    .ie .face.fr::before, .ie .face.ba::before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: calc(var(--size-units) * -0.9);
+      background: rgba(0, 0, 255, 0.5);
+      width: calc(var(--size-units) * 3);
+      height: calc(var(--size-units) * 0.8);
+      transform: rotate(-45deg);
+    }
+
+    .ie .face.to, .ie .face.bo {
+      font-size: calc(var(--size-units) * 0.95);
+      line-height: 0.8;
+      padding: calc(var(--size-units) * 0.1) calc(var(--size-units) * 2.8) 0 calc(var(--size-units) * 1.2);
+    }
+
+    .ie .face.to span:first-child, .ie .face.bo span:first-child { font-weight: normal; }
+    .ie .face.to span:last-child, .ie .face.bo span:last-child { margin-left: calc(var(--size-units) * 0.4); }
+
+    .ie .face.to::before, .ie .face.bo::before {
+      content: "Free";
+      text-transform: uppercase;
+      display: block;
+      position: absolute;
+      background-color: #f00;
+      color: #fff;
+      text-align: center;
+      line-height: 1;
+      padding: calc(var(--size-units) * 0.05) calc(var(--size-units) * 0.1);
+      top: calc(var(--size-units) * 0.8);
+      left: calc(var(--size-units) * -1.2);
+      width: calc(var(--size-units) * 3.1);
+      transform: rotate(-90deg);
+    }
+
+    .ie .face.to::after, .ie .face.bo::after {
+      content: "e";
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      background-color: #000;
+      color: #1ebbee;
+      font-family: serif;
+      font-size: calc(var(--size-units) * 2.2);
+      font-weight: bold;
+      width: calc(var(--size-units) * 2.7);
+      height: calc(var(--size-units) * 2.7);
+      top: 0;
+      right: 0;
+    }
+
+    /* Any / Netscape style */
+    .any .face {
+      background-color: #20123a;
+      color: #fff;
+      font-weight: bold;
+      font-size: calc(var(--size-units) * 1.3);
+      padding: calc(var(--size-units) * 0.3);
+      text-align: center;
+      border: 2px outset #dfdfdf;
+    }
+    .any .face.fr { background: #000080; }
+    .any .face.ba { background: #800080; }
+    .any .face.to { background: #008000; }
+    .any .face.bo { background: #800000; }
+
+    /* Chrome / Firefox face fallbacks */
+    .chrome .face, .firefox .face, .edge .face, .safari .face {
+      background-color: #000080;
+      color: #fff;
+      font-weight: bold;
+      font-size: calc(var(--size-units) * 0.85);
+      padding: calc(var(--size-units) * 0.2);
+      text-align: center;
+      border: 2px outset #fff;
+    }
+
+    /* ========================================================
+       WINDOWS 98 TASKBAR & START MENU
+       ======================================================== */
+    #taskbar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 30px;
+      background: #c0c0c0;
+      box-shadow: inset 0 1px #fff, inset 0 2px #dfdfdf, 0 -1px #000;
+      display: flex;
+      align-items: center;
+      padding: 2px 3px;
+      gap: 4px;
+      z-index: 9999;
+    }
+
+    #start-btn {
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      height: 24px;
+      min-width: 62px;
+      padding: 0 6px;
+    }
+
+    #start-btn.pressed {
+      box-shadow: inset -1px -1px #fff, inset 1px 1px #0a0a0a, inset -2px -2px #dfdfdf, inset 2px 2px grey !important;
+    }
+
+    .start-logo {
+      font-size: 14px;
+    }
+
+    #taskbar-tasks {
+      display: flex;
+      gap: 3px;
+      flex: 1;
+      overflow-x: auto;
+      height: 24px;
+    }
+
+    .task-btn {
+      height: 24px;
+      max-width: 170px;
+      min-width: 100px;
+      font-size: 11px;
+      text-align: left;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 0 6px;
+      cursor: pointer;
+    }
+
+    .task-btn.active {
+      font-weight: bold;
+      box-shadow: inset -1px -1px #fff, inset 1px 1px #0a0a0a, inset -2px -2px #dfdfdf, inset 2px 2px grey !important;
+      background: #e0e0e0;
+    }
+
+    #system-tray {
+      box-shadow: inset 1px 1px #7e7e7e, inset -1px -1px #fff;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      padding: 0 8px;
+      gap: 8px;
+      font-size: 11px;
+      background: #c0c0c0;
+    }
+
+    .tray-icon {
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    /* Start Menu */
+    #start-menu {
+      position: fixed;
+      bottom: 30px;
+      left: 0;
+      width: 240px;
+      background: #c0c0c0;
+      box-shadow: inset 1px 1px #fff, inset -1px -1px #0a0a0a, inset 2px 2px #dfdfdf, inset -2px -2px #7e7e7e, 3px 3px 10px rgba(0,0,0,0.5);
+      display: none;
+      z-index: 10000;
+      padding: 2px;
+    }
+
+    #start-menu.open {
+      display: flex;
+    }
+
+    .start-banner {
+      background: linear-gradient(180deg, #000080 0%, #1084d0 100%);
+      width: 26px;
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: 8px;
+      padding-left: 4px;
+    }
+
+    .start-banner span {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      color: #fff;
+      font-weight: bold;
+      font-size: 14px;
+      letter-spacing: 2px;
+    }
+
+    .start-items {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 2px;
+    }
+
+    .start-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 5px 10px;
+      font-size: 11px;
+      cursor: pointer;
+    }
+
+    .start-item:hover {
+      background: #000080;
+      color: #fff;
+    }
+
+    .start-divider {
+      height: 1px;
+      border-top: 1px solid #7e7e7e;
+      border-bottom: 1px solid #fff;
+      margin: 4px 2px;
+    }
+
+    /* Guestbook / Hit Counter */
+    .hit-counter-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      border: 2px inset #000;
+      background: #000;
+      color: #00ff00;
+      font-family: "Courier New", monospace;
+      font-weight: bold;
+      font-size: 14px;
+      padding: 2px 6px;
+      letter-spacing: 2px;
+      cursor: pointer;
+    }
+
+    /* ========================================================
+       NEW HILARIOUS FEATURES: CLIPPY ASSISTANT 📎
+       ======================================================== */
+    #clippy-assistant {
+      position: fixed;
+      bottom: 45px;
+      right: 360px;
+      z-index: 9000;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      pointer-events: auto;
+    }
+
+    .clippy-bubble {
+      background: #ffffcc;
+      border: 1px solid #000;
+      border-radius: 4px;
+      padding: 10px 12px;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+      max-width: 270px;
+      font-size: 11px;
+      color: #000;
+      margin-bottom: 8px;
+      position: relative;
+      line-height: 1.4;
+    }
+
+    .clippy-bubble::after {
+      content: "";
+      position: absolute;
+      bottom: -8px;
+      right: 28px;
+      border-width: 8px 8px 0 0;
+      border-style: solid;
+      border-color: #ffffcc transparent;
+      display: block;
+      width: 0;
+    }
+
+    .clippy-bubble::before {
+      content: "";
+      position: absolute;
+      bottom: -9px;
+      right: 27px;
+      border-width: 9px 9px 0 0;
+      border-style: solid;
+      border-color: #000 transparent;
+      display: block;
+      width: 0;
+    }
+
+    .clippy-bubble-title {
+      font-weight: bold;
+      color: #000080;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .clippy-options {
+      margin-top: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .clippy-option-btn {
+      text-align: left;
+      font-size: 11px;
+      padding: 2px 6px;
+      cursor: pointer;
+      background: #ffffea;
+      border: 1px outset #fff;
+    }
+    .clippy-option-btn:hover {
+      background: #000080;
+      color: #fff;
+    }
+
+    .clippy-sprite-wrap {
+      cursor: pointer;
+      width: 72px;
+      height: 72px;
+      transition: transform 0.15s ease-in-out;
+      filter: drop-shadow(2px 3px 4px rgba(0,0,0,0.4));
+    }
+    .clippy-sprite-wrap:hover {
+      transform: scale(1.08) rotate(-4deg);
+    }
+    .clippy-sprite-wrap:active {
+      transform: scale(0.95) rotate(6deg);
+    }
+
+    /* ========================================================
+       NEW FEATURE: BLUE SCREEN OF DEATH (BSOD) 💀
+       ======================================================== */
+    #bsod-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #0000aa;
+      color: #ffffff;
+      font-family: "Lucida Console", "Courier New", monospace;
+      font-size: 15px;
+      padding: 50px 70px;
+      box-sizing: border-box;
+      z-index: 999999;
+      cursor: pointer;
+      overflow: hidden;
+      user-select: none;
+    }
+
+    .bsod-header {
+      background: #aaaaaa;
+      color: #0000aa;
+      display: inline-block;
+      padding: 2px 10px;
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 24px;
+    }
+
+    /* ========================================================
+       NEW FEATURE: DISK DEFRAGMENTER (defrag.exe) 💽
+       ======================================================== */
+    #defrag-window {
+      top: 70px;
+      left: 220px;
+      width: 440px;
+      z-index: 60;
+      display: none;
+    }
+
+    .cluster-grid {
+      display: grid;
+      grid-template-columns: repeat(20, 1fr);
+      gap: 2px;
+      background: #7e7e7e;
+      border: 2px inset #fff;
+      padding: 4px;
+      margin: 8px 0;
+      height: 160px;
+      overflow: hidden;
+    }
+
+    .cluster-cell {
+      height: 12px;
+      background: #0000aa; /* Allocated default */
+      transition: background-color 0.2s;
+    }
+    .cluster-cell.free { background: #ffffff; }
+    .cluster-cell.bad { background: #ff0000; }
+    .cluster-cell.moving { background: #ffff00; animation: retroBlink 0.3s infinite; }
+    .cluster-cell.reading { background: #00ff00; }
+
+    /* ========================================================
+       NEW FEATURE: MS-DOS PROMPT (command.com) 💻
+       ======================================================== */
+    #dos-window {
+      top: 130px;
+      left: 300px;
+      width: 520px;
+      height: 340px;
+      z-index: 65;
+      display: none;
+    }
+
+    .dos-terminal {
+      background: #000;
+      color: #c0c0c0;
+      font-family: "Courier New", monospace;
+      font-size: 12px;
+      height: calc(100% - 32px);
+      padding: 8px;
+      overflow-y: auto;
+      box-shadow: inset 1px 1px 0 #000;
+    }
+
+    .dos-input-line {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 4px;
+    }
+
+    .dos-input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #ffffff;
+      font-family: "Courier New", monospace;
+      font-size: 12px;
+      flex: 1;
+      caret-color: #00ff00;
+    }
+
+    /* ========================================================
+       NEW FEATURE: START -> RUN... DIALOG 🏃
+       ======================================================== */
+    #run-window {
+      top: 250px;
+      left: 180px;
+      width: 360px;
+      z-index: 9995;
+      display: none;
+    }
+
+    /* ========================================================
+       NEW FEATURE: 90s STAR / SPARKLE CURSOR TRAIL ✨
+       ======================================================== */
+    .sparkle-particle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 99998;
+      font-size: 14px;
+      animation: sparkleFloat 0.7s forwards ease-out;
+    }
+
+    @keyframes sparkleFloat {
+      0% { transform: translate(0, 0) scale(1.2); opacity: 1; }
+      100% { transform: translate(0, -22px) scale(0.2); opacity: 0; }
+    }
+
+    /* WebRing & Under Construction Banner */
+    .webring-box {
+      border: 2px outset #ffffff;
+      background: #d4d0c8;
+      padding: 6px;
+      margin: 14px 0;
+      text-align: center;
+      font-size: 11px;
+    }
+
+    .under-construction-strip {
+      background: repeating-linear-gradient(
+        -45deg,
+        #ffcc00,
+        #ffcc00 12px,
+        #000000 12px,
+        #000000 24px
+      );
+      height: 16px;
+      margin: 8px 0;
+      border: 1px solid #000;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MATRIX RAIN CANVAS (Easter egg toggled via DOS prompt or Run dialog: 'matrix') -->
+  <canvas id="matrix-canvas"></canvas>
+
+  <!-- BACKGROUND MUSIC (Autoplay at 40% volume as requested) -->
+  <audio id="bg-music" src="./mjuzyk/funday.mp3" autoplay loop preload="auto"></audio>
+
+  <!-- High-visibility Autoplay Banner if Browser Policy Requires Click -->
+  <div id="autoplay-banner" onclick="loginAndStartMusic()">
+    <span>🎵 <strong>Sound Blaster 16:</strong> Click anywhere on screen to enable "funday.mp3" (40% Volume) 🎵</span>
+  </div>
+
+  <!-- Authentic Windows 98 Logon Dialog (Bypasses Browser Autoplay Restrictions with 1 Click) -->
+  <div id="login-dialog" class="app-window window active-window" style="top: 50%; left: 50%; transform: translate(-50%, -50%); width: 380px; z-index: 10002;">
+    <div class="title-bar">
+      <div class="title-bar-text">Welcome to Windows 98</div>
+      <div class="title-bar-controls">
+        <button aria-label="Close" onclick="loginAndStartMusic()"></button>
+      </div>
+    </div>
+    <div class="window-body" style="padding: 12px;">
+      <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 12px;">
+        <div style="font-size: 34px;">🔑</div>
+        <div style="font-size: 11px; line-height: 1.4;">
+          Type a user name and password to log on to Windows 98 and activate <strong>funday.mp3</strong> background music (40% volume).
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px;">
+        <div style="display: flex; align-items: center;">
+          <label for="win98-user" style="width: 80px; font-size: 11px;">User name:</label>
+          <input type="text" id="win98-user" value="Administrator" style="flex: 1;" readonly>
+        </div>
+        <div style="display: flex; align-items: center;">
+          <label for="win98-pass" style="width: 80px; font-size: 11px;">Password:</label>
+          <input type="password" id="win98-pass" value="••••••••" style="flex: 1;" readonly>
+        </div>
+      </div>
+      <div style="display: flex; justify-content: flex-end; gap: 8px;">
+        <button class="default" onclick="loginAndStartMusic()" style="min-width: 75px; font-weight: bold;">OK</button>
+        <button onclick="loginAndStartMusic()" style="min-width: 75px;">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- DESKTOP SHORTCUT ICONS (Multi-column wrapping grid) -->
+  <div id="desktop-icons">
+    <div class="desktop-icon" onclick="openOrFocus('ie-window')">
+      <div class="icon-img">🌐</div>
+      <div class="icon-label">Internet Explorer</div>
+    </div>
+    <div class="desktop-icon" onclick="spawnWinnerBigPopup()">
+      <div class="icon-img">🏆</div>
+      <div class="icon-label">YOU WON $1M!</div>
+    </div>
+    <div class="desktop-icon" onclick="spawnLotteryPopup()">
+      <div class="icon-img">🎰</div>
+      <div class="icon-label">Lottery Spin</div>
+    </div>
+    <div class="desktop-icon" onclick="spawnGatewayAd()">
+      <div class="icon-img">🎁</div>
+      <div class="icon-label">Free Gateway PC</div>
+    </div>
+    <div class="desktop-icon" onclick="spawnHellPopup()">
+      <div class="icon-img">🔥</div>
+      <div class="icon-label">PopupFromHell</div>
+    </div>
+    <div class="desktop-icon" onclick="spawnEvasivePopup()">
+      <div class="icon-img">💨</div>
+      <div class="icon-label">Runaway.exe</div>
+    </div>
+    <div class="desktop-icon" onclick="openOrFocus('media-window')">
+      <div class="icon-img">🎵</div>
+      <div class="icon-label">Winamp Media</div>
+    </div>
+    <div class="desktop-icon" onclick="openOrFocus('defrag-window')">
+      <div class="icon-img">💽</div>
+      <div class="icon-label">Defrag C:</div>
+    </div>
+    <div class="desktop-icon" onclick="openOrFocus('dos-window')">
+      <div class="icon-img">💻</div>
+      <div class="icon-label">MS-DOS Prompt</div>
+    </div>
+    <div class="desktop-icon" onclick="playModemDialUpHandshake()">
+      <div class="icon-img">📞</div>
+      <div class="icon-label">Dial 56K Modem</div>
+    </div>
+    <div class="desktop-icon" onclick="summonClippy()">
+      <div class="icon-img">📎</div>
+      <div class="icon-label">Clippy Help</div>
+    </div>
+    <div class="desktop-icon" onclick="triggerBSOD()">
+      <div class="icon-img">⚠️</div>
+      <div class="icon-label">DONT_CLICK.EXE</div>
+    </div>
+    <div class="desktop-icon" onclick="spawnChaosFrenzy()">
+      <div class="icon-img">💣</div>
+      <div class="icon-label">SPAM CHAOS!</div>
+    </div>
+    <div class="desktop-icon" onclick="openOrFocus('readme-window')">
+      <div class="icon-img">📝</div>
+      <div class="icon-label">README.TXT</div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       MAIN APPLICATION WINDOW: INTERNET EXPLORER 4.0
+       ======================================================== -->
+  <div id="ie-window" class="app-window window active-window" style="z-index: 50;">
+    <div class="title-bar" onmousedown="bringToFront('ie-window'); startDrag(event, 'ie-window')">
+      <div class="title-bar-text">🌐 Microsoft Internet Explorer - http://www.geocities.com/panny1998/</div>
+      <div class="title-bar-controls">
+        <button aria-label="Minimize" onclick="minimizeWindow('ie-window')"></button>
+        <button aria-label="Maximize" onclick="maximizeWindow('ie-window')"></button>
+        <button aria-label="Close" onclick="minimizeWindow('ie-window')"></button>
+      </div>
+    </div>
+
+    <div class="ie-menu-bar">
+      <span class="ie-menu-item" onclick="alert('File -> Save As: Cannot save cyberspace onto 1.44MB floppy!')"><u>F</u>ile</span>
+      <span class="ie-menu-item" onclick="alert('Edit -> Cut: Please do not cut our fiber-optic dial-up cables!')"><u>E</u>dit</span>
+      <span class="ie-menu-item" onclick="toggleComicSans()"><u>V</u>iew (Comic Sans)</span>
+      <span class="ie-menu-item" onclick="playModemDialUpHandshake()"><u>G</u>o (Dial 56k)</span>
+      <span class="ie-menu-item" onclick="alert('Added to Favorites: Panny\'s Cyber Palace 1998!')"><u>F</u>avorites</span>
+      <span class="ie-menu-item" onclick="summonClippy()"><u>H</u>elp (Clippy)</span>
+    </div>
+
+    <div class="ie-toolbar">
+      <button onclick="alert('Cannot go back! 1998 is the destination.')">&larr; Back</button>
+      <button onclick="alert('Nothing forward! You are on the bleeding edge.')">Forward &rarr;</button>
+      <button onclick="stopSpawning()">⏹ Stop</button>
+      <button onclick="location.reload()">🔄 Refresh</button>
+      <button onclick="openOrFocus('ie-window')">🏠 Home</button>
+      <button onclick="spawnRandomPopup()">⚡ New Popup!</button>
+      <button onclick="closeAllPopups()">🧹 Clear Popups</button>
+      <button onclick="playModemDialUpHandshake()">📞 Dial-Up Handshake</button>
+      <button onclick="triggerBSOD()" style="color: red;">💀 Crash Windows</button>
+    </div>
+
+    <div class="ie-address-bar">
+      <label for="ie-url"><strong>Address:</strong></label>
+      <input type="text" id="ie-url" class="ie-address-input" value="http://www.geocities.com/siliconvalley/panny/1998/index.html" readonly>
+    </div>
+
+    <div class="window-body ie-content-area">
+      <!-- Animated Marquee -->
+      <marquee class="retro-marquee" behavior="scroll" direction="left" scrollamount="6">
+        ★★★ WELCOME TO PANNY'S RETRO CYBER PALACE ★★★ BEST VIEWED AT 800x600 IN 16-BIT COLOR WITH 56K MODEM ★★★ POPUPS ARE LIVE AND CLOSING RANDOMLY! ★★★
+      </marquee>
+
+      <div style="text-align: center; margin-bottom: 12px;">
+        <h2 style="margin: 4px 0; color: #000080; font-family: 'Times New Roman', serif;">★ The Ultimate 3D Rotating Browser Badge ★</h2>
+        <p style="margin: 0; font-size: 12px;">As seen on the GeoCities WebRing &amp; Netscape Cool Site of the Day!</p>
+      </div>
+
+      <!-- THE 3D ROTATING BADGE COMPONENT (From bestviewedwith.html) -->
+      <p id="BestViewedIn" class="ie">
+        <a href="#ie" class="ie">
+          <span class="box">
+            <span class="face fr">This page is<br>best viewed with:</span>
+            <span aria-hidden="true" class="face ba">This page is<br>best viewed with:</span>
+            <span class="face to"><span>Microsoft</span> <span>Internet Explorer</span></span>
+            <span aria-hidden="true" class="face bo"><span>Microsoft</span> <span>Internet Explorer</span></span>
+          </span>
+        </a>
+        <a href="#firefox" class="firefox">
+          <span class="box">
+            <span class="face fr">Firefox <span>Puts privacy first.</span></span>
+            <span aria-hidden="true" class="face ba">Firefox <span>Puts privacy first.</span></span>
+            <span class="face to">Firefox <span>Enhanced tracking.</span></span>
+            <span aria-hidden="true" class="face bo">Firefox <span>Enhanced tracking.</span></span>
+          </span>
+        </a>
+        <a href="#edge" class="edge">
+          <span class="box">
+            <span class="face fr">Microsoft Edge &gt;</span>
+            <span aria-hidden="true" class="face ba">Microsoft Edge &gt;</span>
+            <span class="face to">The modern browser.</span>
+            <span aria-hidden="true" class="face bo">The modern browser.</span>
+          </span>
+        </a>
+        <a href="#chrome" class="chrome">
+          <span class="box">
+            <span class="face fr">Google Chrome 1998</span>
+            <span aria-hidden="true" class="face ba">Google Chrome 1998</span>
+            <span class="face to">Download Chrome now &rarr;</span>
+            <span aria-hidden="true" class="face bo">Download Chrome now &rarr;</span>
+          </span>
+        </a>
+        <a href="#safari" class="safari">
+          <span class="box">
+            <span class="face fr">Apple Safari</span>
+            <span aria-hidden="true" class="face ba">Apple Safari</span>
+            <span class="face to">Mac OS 8.5 &amp; 9.0</span>
+            <span aria-hidden="true" class="face bo">Mac OS 8.5 &amp; 9.0</span>
+          </span>
+        </a>
+        <a href="#any" class="any">
+          <span class="box">
+            <span class="face fr">USE</span>
+            <span class="face to">ANY</span>
+            <span class="face ba">DAMN</span>
+            <span class="face bo">BROWSER</span>
+          </span>
+        </a>
+      </p>
+
+      <!-- Badge Controls -->
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 12px 0;">
+        <fieldset>
+          <legend>Badge Theme</legend>
+          <button onclick="setCardUA('ie')">Internet Explorer</button>
+          <button onclick="setCardUA('any')">Any Damn Browser</button>
+          <button onclick="setCardUA('firefox')">Firefox</button>
+          <button onclick="setCardUA('edge')">Edge</button>
+          <button onclick="setCardUA('chrome')">Chrome</button>
+        </fieldset>
+
+        <fieldset>
+          <legend>3D Rotation</legend>
+          <button onclick="setCardMotion('spin')">Continuous Spin</button>
+          <button onclick="setCardMotion('stepped')">Stepped 90&deg;</button>
+          <button onclick="setCardMotion('stop')">Stop</button>
+        </fieldset>
+      </div>
+
+      <!-- ALTAVISTA / YAHOO 98 CYBERSPACE SEARCH BOX -->
+      <div style="background: #ffffea; border: 2px groove #fff; padding: 8px; margin: 12px 0; text-align: center;">
+        <strong style="color: #800000; font-size: 12px;">🔍 AltaVista &amp; Yahoo! 98 Cyberspace Search:</strong>
+        <div style="display: flex; justify-content: center; gap: 6px; margin-top: 6px;">
+          <input type="text" id="altavista-query" placeholder="Search for Doom cheats, MIDI files, aliens..." style="width: 60%; font-size: 11px; padding: 2px 4px;">
+          <button class="default" onclick="searchAltaVista()">Search Web</button>
+          <button onclick="document.getElementById('altavista-query').value='free mp3 download no virus'; searchAltaVista();">I'm Feeling Lucky</button>
+        </div>
+      </div>
+
+      <!-- CHAOS CONTROLS & POPUP GENERATOR -->
+      <div class="chaos-panel">
+        <h4 style="margin: 0 0 6px 0; color: #800000;">⚠️ Interactive Popup Generator &amp; Controls</h4>
+        <p style="margin: 0; font-size: 11px;">
+          Featuring classic 90s Internet Explorer popups and Tomas Petricek's notorious <em>"Popup from Hell"</em> Hydra effect (closing 1 spawns 2)!
+        </p>
+
+        <div class="chaos-buttons">
+          <button class="default" onclick="spawnWinnerBigPopup()">🏆 $1,000,000 Winner Poster!</button>
+          <button class="default" onclick="spawnLotteryPopup()">🎰 Spawn Lottery Winner!</button>
+          <button class="default" onclick="spawnGatewayAd()">🎁 Free Gateway PC Ad</button>
+          <button style="background: #200000; color: #ff5555; font-weight: bold;" onclick="spawnHellPopup()">🔥 "Popup from Hell" (Hydra x2)</button>
+          <button onclick="spawnEvasivePopup()">💨 Runaway Evasive Popup</button>
+          <button onclick="spawnKazaaPopup()">🎵 Limewire MP3.exe Alert</button>
+          <button onclick="spawnY2KPopup()">⏳ Y2K Bug Warning</button>
+          <button onclick="spawnAOLCDsPopup()">💿 AOL 10,000 CD-ROMs</button>
+          <button onclick="spawnAdAvalanche()">💥 Ad Avalanche</button>
+          <button onclick="spawnVirusAlert()">🚨 Virus Detected</button>
+          <button onclick="spawnBonziBuddy()">🦍 Summon BonziBuddy</button>
+          <button onclick="playModemDialUpHandshake()">📞 Dial-Up Handshake</button>
+          <button onclick="spawnDownloadRam()">💾 Download More RAM</button>
+          <button onclick="spawnIllegalOperation()">❌ Illegal Operation</button>
+          <button onclick="spawnChaosFrenzy()" style="color: red; font-weight: bold;">💣 BOMBARDMENT (5 Popups)</button>
+          <button onclick="toggleAutoSpawning()" id="toggle-spawning-btn">⏸ Pause Auto-Popups</button>
+          <button onclick="exorciseHellPopups()">✝️ Exorcise Hell Popups</button>
+          <button onclick="closeAllPopups()">❌ Close All Popups</button>
+        </div>
+      </div>
+
+      <!-- UNDER CONSTRUCTION WARNING & WEBRING -->
+      <div class="under-construction-strip"></div>
+      <div class="webring-box">
+        <strong>🌐 [ GeoCities WebRing - CyberSurfers Hub #4092 ] 🌐</strong><br>
+        <span style="font-size: 10px;">You are currently surfing the ring!</span><br>
+        <div style="display: flex; justify-content: center; gap: 8px; margin-top: 6px;">
+          <button onclick="navigateWebRing('prev')">&lt;&lt; Prev Site</button>
+          <button onclick="navigateWebRing('random')">🌀 Random Ring Site</button>
+          <button onclick="navigateWebRing('next')">Next Site &gt;&gt;</button>
+          <button onclick="alert('To join the GeoCities WebRing, please insert HTML snippet #402 into your homestead page and submit 4 floppy disks.')">Join Ring</button>
+        </div>
+      </div>
+
+      <!-- Retro Page Footer & Guestbook Counter -->
+      <div style="margin-top: 14px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #c0c0c0; padding-top: 10px;">
+        <div>
+          <span>Visitors Since 1998: </span>
+          <span class="hit-counter-box" id="hit-counter" onclick="incrementHitCounter()" title="Click to increment visitor counter!">0074291</span>
+        </div>
+        <div>
+          <span class="blink-text" style="color: red;">🔥 UNDER CONSTRUCTION 🔥</span>
+        </div>
+        <div>
+          <button onclick="signGuestbook()">✍️ Sign Guestbook</button>
+          <button onclick="toggleComicSans()">🔤 Comic Sans</button>
+        </div>
+      </div>
+
+      <!-- Live Guestbook Marquee -->
+      <div style="margin-top: 8px; font-size: 11px; background: #000; color: #00ff00; padding: 4px; border: 1px inset #777;">
+        <span style="color: #ffff00; font-weight: bold;">Latest Guestbook Signatures: </span>
+        <marquee scrollamount="4" style="vertical-align: middle;" id="guestbook-marquee">
+          ~*~ CoOl PaGe dUdE ~*~ (Kevin, 1998) ★★★ "Nice rotating badge, downloaded in only 40 seconds!" (Dave_56k) ★★★ "Check out my Dragon Ball Z sound archive!" (GokuFan99) ★★★
+        </marquee>
+      </div>
+    </div>
+
+    <div class="status-bar">
+      <p class="status-bar-field" id="ie-status">Done (Loaded at 56,600 bps)</p>
+      <p class="status-bar-field" id="active-popups-count">Active Popups: 0</p>
+      <p class="status-bar-field" id="hell-popups-count">Hell Popups: 0</p>
+      <p class="status-bar-field">Zone: Internet (1998)</p>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       MEDIA PLAYER / WINAMP WINDOW (funday.mp3 controller)
+       ======================================================== -->
+  <div id="media-window" class="app-window window" style="z-index: 45;">
+    <div class="title-bar" onmousedown="bringToFront('media-window'); startDrag(event, 'media-window')">
+      <div class="title-bar-text">🎵 Windows Media Player - funday.mp3</div>
+      <div class="title-bar-controls">
+        <button aria-label="Minimize" onclick="minimizeWindow('media-window')"></button>
+        <button aria-label="Close" onclick="minimizeWindow('media-window')"></button>
+      </div>
+    </div>
+    <div class="window-body" style="padding: 6px;">
+      <div class="visualizer-display" id="visualizer">
+        <div class="vis-bar"></div><div class="vis-bar"></div><div class="vis-bar"></div>
+        <div class="vis-bar"></div><div class="vis-bar"></div><div class="vis-bar"></div>
+        <div class="vis-bar"></div><div class="vis-bar"></div><div class="vis-bar"></div>
+        <div class="vis-bar"></div><div class="vis-bar"></div><div class="vis-bar"></div>
+      </div>
+
+      <div style="font-size: 11px; margin-bottom: 6px;">
+        <strong>Track:</strong> <span>mjuzyk/funday.mp3</span><br>
+        <strong>Status:</strong> <span id="audio-status-text">Playing (40% volume)</span>
+      </div>
+
+      <div style="display: flex; gap: 6px; align-items: center; justify-content: space-between;">
+        <button id="audio-play-btn" onclick="toggleAudioPlay()">⏸ Pause</button>
+        <button onclick="resetAudio()">⏮ Restart</button>
+        <label for="volume-slider" style="font-size: 11px;">Vol: 40%</label>
+        <input type="range" id="volume-slider" min="0" max="100" value="40" style="width: 80px;" oninput="updateVolume(this.value)">
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       DISK DEFRAGMENTER WINDOW (defrag.exe) 💽
+       ======================================================== -->
+  <div id="defrag-window" class="app-window window">
+    <div class="title-bar" onmousedown="bringToFront('defrag-window'); startDrag(event, 'defrag-window')">
+      <div class="title-bar-text">💽 Disk Defragmenter - Drive C: (850 MB FAT16)</div>
+      <div class="title-bar-controls">
+        <button aria-label="Minimize" onclick="minimizeWindow('defrag-window')"></button>
+        <button aria-label="Close" onclick="minimizeWindow('defrag-window')"></button>
+      </div>
+    </div>
+    <div class="window-body" style="padding: 8px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; font-size: 11px; margin-bottom: 4px;">
+        <span><strong>Drive C:</strong> 14% Defragmented</span>
+        <span id="defrag-status-text" style="color: navy; font-weight: bold;">Optimizing clusters...</span>
+      </div>
+      <div class="progress-indicator segmented" style="height: 20px; margin-bottom: 8px;">
+        <span class="progress-indicator-bar" id="defrag-progress-bar" style="width: 14%;"></span>
+      </div>
+
+      <!-- Cluster Grid Map -->
+      <div class="cluster-grid" id="defrag-grid"></div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px; font-size: 11px;">
+        <div style="display: flex; gap: 6px;">
+          <button id="defrag-pause-btn" onclick="toggleDefragPause()">Pause</button>
+          <button onclick="resetDefrag()">Restart</button>
+          <button onclick="alert('Defrag Legend:\n■ Blue: Allocated clusters\n□ White: Free space\n■ Red: Unmovable Bad sectors\n■ Yellow: Moving in real-time\n■ Green: Reading clusters')">Legend</button>
+        </div>
+        <button class="default" onclick="minimizeWindow('defrag-window')">Hide</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       MS-DOS PROMPT WINDOW (command.com) 💻
+       ======================================================== -->
+  <div id="dos-window" class="app-window window">
+    <div class="title-bar" onmousedown="bringToFront('dos-window'); startDrag(event, 'dos-window')">
+      <div class="title-bar-text">💻 MS-DOS Prompt - 80x25</div>
+      <div class="title-bar-controls">
+        <button aria-label="Minimize" onclick="minimizeWindow('dos-window')"></button>
+        <button aria-label="Close" onclick="minimizeWindow('dos-window')"></button>
+      </div>
+    </div>
+    <div class="window-body" style="padding: 2px; height: calc(100% - 24px);">
+      <div class="dos-terminal" id="dos-terminal" onclick="document.getElementById('dos-input').focus()">
+        <div>Microsoft(R) Windows 98</div>
+        <div>(C)Copyright Microsoft Corp 1981-1998.</div>
+        <div style="margin-bottom: 8px; color: #ffff00;">Type 'HELP' for available commands or 'DOOM' for cheats.</div>
+        <div id="dos-history"></div>
+        <div class="dos-input-line">
+          <span>C:\WINDOWS&gt;</span>
+          <input type="text" id="dos-input" class="dos-input" autofocus autocomplete="off" spellcheck="false" onkeydown="handleDosKey(event)">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       START -> RUN... WINDOW 🏃
+       ======================================================== -->
+  <div id="run-window" class="app-window window">
+    <div class="title-bar" onmousedown="bringToFront('run-window'); startDrag(event, 'run-window')">
+      <div class="title-bar-text">Run</div>
+      <div class="title-bar-controls">
+        <button aria-label="Close" onclick="minimizeWindow('run-window')"></button>
+      </div>
+    </div>
+    <div class="window-body" style="padding: 10px;">
+      <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 12px;">
+        <div style="font-size: 32px;">🏃</div>
+        <div style="font-size: 11px;">
+          Type the name of a program, folder, document, or Internet resource, and Windows will open it for you.
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 14px;">
+        <label for="run-input" style="font-size: 11px;"><u>O</u>pen:</label>
+        <input type="text" id="run-input" placeholder="e.g. clippy, bsod, defrag, dialup, cmd, matrix" style="flex: 1;" onkeydown="if(event.key==='Enter') executeRunCommand()">
+      </div>
+      <div style="display: flex; justify-content: flex-end; gap: 6px;">
+        <button class="default" onclick="executeRunCommand()" style="min-width: 65px;">OK</button>
+        <button onclick="minimizeWindow('run-window')" style="min-width: 65px;">Cancel</button>
+        <button onclick="alert('Browse: No other 3.5-inch floppies found in Drive A:!')" style="min-width: 65px;">Browse...</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       NOTEPAD WINDOW (README.TXT & Tomas Petricek Code)
+       ======================================================== -->
+  <div id="readme-window" class="app-window window" style="top: 110px; left: 30px; width: 440px; z-index: 40; display: none;">
+    <div class="title-bar" onmousedown="bringToFront('readme-window'); startDrag(event, 'readme-window')">
+      <div class="title-bar-text">📝 POPUP-FROM-HELL.TXT - Notepad</div>
+      <div class="title-bar-controls">
+        <button aria-label="Close" onclick="minimizeWindow('readme-window')"></button>
+      </div>
+    </div>
+    <div class="window-body" style="padding: 4px;">
+      <textarea style="width: 100%; height: 210px; font-family: 'Courier New', monospace; font-size: 11px; resize: none; background: #fff; padding: 4px;" readonly>
+==================================================
+THE POPUP FROM HELL (Tomas Petricek, 2021 Talk)
+Reflections on the most annoying 1990s program
+==================================================
+
+<script type="text/javascript">
+var i = 0;
+function one() {
+  var l = Math.floor(Math.random()*800);
+  var t = Math.floor(Math.random()*600);
+  nw = window.open("", "nw"+(i++),
+    "statusbar,TOP="+t+",LEFT="+l+",HEIGHT=100,WIDTH=400");
+  nw.document.writeln("<body background=stars.bmp><h1>"+
+    "<font color=white><marquee>Close me if you can!"+
+    "</marquee></font></h1></body>");
+  nw.document.body.onbeforeunload = two;
+  nw.focus();
+}
+function two() {
+  one(); one(); // CLOSING ONE SPAWNS TWO!
+}
+</script>
+==================================================
+Try it live on this page using the "Popup from Hell" button!
+      </textarea>
+      <div style="display: flex; justify-content: flex-end; gap: 6px; margin-top: 4px;">
+        <button class="default" onclick="spawnHellPopup()">🔥 Run This Code!</button>
+        <button onclick="minimizeWindow('readme-window')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       CLIPPY ASSISTANT (Microsoft Paperclip 📎)
+       ======================================================== -->
+  <div id="clippy-assistant">
+    <div class="clippy-bubble" id="clippy-bubble">
+      <div class="clippy-bubble-title">
+        <span>📎 Microsoft Clippy</span>
+        <span onclick="dismissClippy()" style="cursor: pointer; font-size: 10px;" title="Dismiss Clippy">✕</span>
+      </div>
+      <div id="clippy-message">
+        It looks like you're exploring 1998 cyberspace! Would you like some chaotic assistance?
+      </div>
+      <div class="clippy-options">
+        <button class="clippy-option-btn" onclick="handleClippyAction('joke')">💡 Tell me a 90s tech joke</button>
+        <button class="clippy-option-btn" onclick="handleClippyAction('modem')">📞 Play 56K Dial-Up Handshake</button>
+        <button class="clippy-option-btn" onclick="handleClippyAction('comicsans')">🔤 Comic Sans Mode</button>
+        <button class="clippy-option-btn" onclick="handleClippyAction('chaos')">💣 Unleash 5 Popups</button>
+        <button class="clippy-option-btn" onclick="handleClippyAction('bsod')">💀 Crash to Blue Screen (BSOD)</button>
+        <button class="clippy-option-btn" onclick="dismissClippy()">✕ Go away, Clippy</button>
+      </div>
+    </div>
+
+    <!-- Crisp SVG Clippy Sprite -->
+    <div class="clippy-sprite-wrap" onclick="pokeClippy()" title="Click to poke Clippy!">
+      <svg viewBox="0 0 100 100" width="72" height="72">
+        <!-- Paperclip wire body -->
+        <path d="M 35 85 L 35 25 C 35 12 65 12 65 25 L 65 72 C 65 80 45 80 45 72 L 45 35 C 45 30 55 30 55 35 L 55 65" 
+              fill="none" stroke="#7e8c99" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M 35 85 L 35 25 C 35 12 65 12 65 25 L 65 72 C 65 80 45 80 45 72 L 45 35 C 45 30 55 30 55 35 L 55 65" 
+              fill="none" stroke="#e0e6ed" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- Googly Eyes Left -->
+        <ellipse cx="45" cy="38" rx="8" ry="10" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
+        <ellipse id="clippy-pupil-left" cx="47" cy="39" rx="3.5" ry="4.5" fill="#000000"/>
+        <circle cx="48" cy="37" r="1.2" fill="#ffffff"/>
+        <!-- Googly Eyes Right -->
+        <ellipse cx="61" cy="38" rx="8" ry="10" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
+        <ellipse id="clippy-pupil-right" cx="63" cy="39" rx="3.5" ry="4.5" fill="#000000"/>
+        <circle cx="64" cy="37" r="1.2" fill="#ffffff"/>
+        <!-- Expressive Eyebrows -->
+        <path d="M 38 27 Q 45 23 51 27" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
+        <path d="M 56 27 Q 62 23 68 27" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       BLUE SCREEN OF DEATH (BSOD) FULL-SCREEN OVERLAY 💀
+       ======================================================== -->
+  <div id="bsod-overlay" onclick="dismissBSOD()" onkeydown="dismissBSOD()" tabindex="0">
+    <div class="bsod-header">Windows 98</div>
+    <p style="line-height: 1.6; margin-bottom: 22px;">
+      A fatal exception 0E has occurred at 0028:C0011E36 in VXD VMM(01) + 00010E36.<br>
+      The current application will be terminated.
+    </p>
+    <p style="line-height: 1.6; margin-bottom: 22px;">
+      * Press any key to pretend you understand this error message.<br>
+      * Press CTRL+ALT+DEL again to restart your computer. You will lose any unsaved guestbook entries in all open browser windows.<br>
+      * Mom picked up the telephone downstairs. 56K carrier connection severed.<br>
+      * High Memory Area (HMA) flooded with 4,000 AOL free trial minutes.<br>
+      * Cause: Downloaded too much RAM directly into video memory.
+    </p>
+    <p style="text-align: center; margin-top: 50px; font-weight: bold; font-size: 16px;">
+      Press any key or click anywhere to restart Windows 98 <span class="blink-text">_</span>
+    </p>
+  </div>
+
+  <!-- CONTAINER WHERE AUTO-CLOSING POPUPS ARE INJECTED -->
+  <div id="popups-container"></div>
+
+  <!-- ========================================================
+       WINDOWS 98 TASKBAR & START MENU
+       ======================================================== -->
+  <div id="start-menu">
+    <div class="start-banner">
+      <span>WINDOWS 98</span>
+    </div>
+    <div class="start-items">
+      <div class="start-item" onclick="openOrFocus('ie-window'); toggleStartMenu();">
+        <span>🌐</span> <strong>Internet Explorer</strong>
+      </div>
+      <div class="start-item" onclick="openOrFocus('media-window'); toggleStartMenu();">
+        <span>🎵</span> <strong>Media Player (funday.mp3)</strong>
+      </div>
+      <div class="start-item" onclick="openOrFocus('defrag-window'); toggleStartMenu();">
+        <span>💽</span> <strong>Disk Defragmenter (Drive C:)</strong>
+      </div>
+      <div class="start-item" onclick="openOrFocus('dos-window'); toggleStartMenu();">
+        <span>💻</span> <strong>MS-DOS Prompt</strong>
+      </div>
+      <div class="start-item" onclick="openOrFocus('run-window'); toggleStartMenu();">
+        <span>🏃</span> <strong>Run...</strong>
+      </div>
+      <div class="start-item" onclick="openOrFocus('readme-window'); toggleStartMenu();">
+        <span>📝</span> <strong>Popup From Hell Code</strong>
+      </div>
+      <div class="start-divider"></div>
+      <div class="start-item" onclick="spawnWinnerBigPopup(); toggleStartMenu();">
+        <span>🏆</span> <strong>$1,000,000 Winner Notice</strong>
+      </div>
+      <div class="start-item" onclick="spawnHellPopup(); toggleStartMenu();">
+        <span>🔥</span> <strong>Spawn "Popup from Hell"</strong>
+      </div>
+      <div class="start-item" onclick="spawnChaosFrenzy(); toggleStartMenu();">
+        <span>💣</span> <strong>Spawn 5 Popups!</strong>
+      </div>
+      <div class="start-item" onclick="playModemDialUpHandshake(); toggleStartMenu();">
+        <span>📞</span> <strong>Dial 56K Modem</strong>
+      </div>
+      <div class="start-item" onclick="summonClippy(); toggleStartMenu();">
+        <span>📎</span> <strong>Summon Clippy</strong>
+      </div>
+      <div class="start-item" onclick="toggleComicSans(); toggleStartMenu();">
+        <span>🔤</span> <strong>Toggle Comic Sans MS</strong>
+      </div>
+      <div class="start-item" onclick="triggerBSOD(); toggleStartMenu();">
+        <span>💀</span> <strong>Crash Windows (BSOD)</strong>
+      </div>
+      <div class="start-divider"></div>
+      <div class="start-item" onclick="triggerShutDown(); toggleStartMenu();">
+        <span>🔌</span> <strong>Shut Down...</strong>
+      </div>
+    </div>
+  </div>
+
+  <div id="taskbar">
+    <button id="start-btn" onclick="toggleStartMenu()">
+      <span class="start-logo">🪟</span> Start
+    </button>
+    <div id="taskbar-tasks">
+      <button class="task-btn active" id="task-ie" onclick="toggleWindowFromTaskbar('ie-window', this)">
+        <span>🌐</span> Internet Explorer
+      </button>
+      <button class="task-btn active" id="task-media" onclick="toggleWindowFromTaskbar('media-window', this)">
+        <span>🎵</span> Media Player
+      </button>
+      <button class="task-btn" id="task-defrag" style="display:none;" onclick="toggleWindowFromTaskbar('defrag-window', this)">
+        <span>💽</span> Defrag C:
+      </button>
+      <button class="task-btn" id="task-dos" style="display:none;" onclick="toggleWindowFromTaskbar('dos-window', this)">
+        <span>💻</span> MS-DOS Prompt
+      </button>
+    </div>
+    <div id="system-tray">
+      <span class="tray-icon" id="tray-audio-icon" onclick="toggleAudioPlay()" title="Audio Volume (Click to Mute/Unmute)">🔊</span>
+      <span class="tray-icon" onclick="playModemDialUpHandshake()" title="Dial-up modem active (56K) - Click to hear handshake">🖧</span>
+      <span class="tray-icon" id="tray-sparkle-icon" onclick="toggleMouseTrail()" title="Toggle Star Cursor Trail">✨</span>
+      <span class="tray-icon" onclick="summonClippy()" title="Microsoft Clippy Help">📎</span>
+      <span id="tray-clock">12:00 AM</span>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       APPLICATION LOGIC, AUDIO AUTOPLAY & POPUP ENGINE
+       ======================================================== -->
+  <script>
+    /* ========================================================
+       1. ROBUST AUDIO AUTOPLAY MANAGEMENT (40% volume)
+       ======================================================== */
+    const bgAudio = document.getElementById('bg-music');
+    const audioStatusText = document.getElementById('audio-status-text');
+    const playBtn = document.getElementById('audio-play-btn');
+    const trayAudioIcon = document.getElementById('tray-audio-icon');
+    const volumeSlider = document.getElementById('volume-slider');
+    const autoplayBanner = document.getElementById('autoplay-banner');
+    const loginDialog = document.getElementById('login-dialog');
+
+    // Strict 40% volume as requested
+    bgAudio.volume = 0.4;
+
+    let isAudioPlaying = false;
+
+    function startMusic() {
+      bgAudio.volume = 0.4;
+      bgAudio.muted = false;
+
+      const p = bgAudio.play();
+      if (p !== undefined) {
+        return p.then(() => {
+          isAudioPlaying = true;
+          updateAudioUI(true);
+          hideAutoplayBanner();
+          closeLoginDialog();
+          removeGlobalGestureListeners();
+        }).catch(err => {
+          console.warn("Autoplay waiting for user interaction:", err.name);
+          updateAudioUI(false);
+          showAutoplayBanner();
+        });
+      }
+      return Promise.resolve();
+    }
+
+    function showAutoplayBanner() {
+      if (autoplayBanner) autoplayBanner.style.display = 'block';
+    }
+
+    function hideAutoplayBanner() {
+      if (autoplayBanner) autoplayBanner.style.display = 'none';
+    }
+
+    function closeLoginDialog() {
+      if (loginDialog) loginDialog.style.display = 'none';
+    }
+
+    function loginAndStartMusic() {
+      startMusic();
+      playRetroChime('default');
+      closeLoginDialog();
+    }
+
+    // ONLY valid browser user activation events (NO mousemove, NO wheel!)
+    const activationEvents = ['click', 'pointerdown', 'keydown', 'touchstart'];
+    function onUserActivation() {
+      startMusic();
+    }
+
+    function addGlobalGestureListeners() {
+      activationEvents.forEach(evt => {
+        document.addEventListener(evt, onUserActivation, { passive: true });
+      });
+    }
+
+    function removeGlobalGestureListeners() {
+      activationEvents.forEach(evt => {
+        document.removeEventListener(evt, onUserActivation);
+      });
+    }
+
+    // Add listeners immediately
+    addGlobalGestureListeners();
+
+    function tryAutoplayNow() {
+      startMusic();
+    }
+
+    function toggleAudioPlay() {
+      if (bgAudio.paused) {
+        startMusic();
+      } else {
+        bgAudio.pause();
+        updateAudioUI(false);
+      }
+    }
+
+    function resetAudio() {
+      bgAudio.currentTime = 0;
+      bgAudio.play();
+      updateAudioUI(true);
+    }
+
+    function updateVolume(val) {
+      const vol = val / 100;
+      bgAudio.volume = vol;
+      audioStatusText.textContent = `${bgAudio.paused ? 'Paused' : 'Playing'} (${val}% volume)`;
+      trayAudioIcon.textContent = vol === 0 ? '🔇' : '🔊';
+    }
+
+    function updateAudioUI(isPlaying) {
+      if (isPlaying) {
+        playBtn.textContent = '⏸ Pause';
+        audioStatusText.textContent = `Playing (${Math.round(bgAudio.volume * 100)}% volume)`;
+        trayAudioIcon.textContent = '🔊';
+      } else {
+        playBtn.textContent = '▶ Play';
+        audioStatusText.textContent = 'Paused (Click to play)';
+        trayAudioIcon.textContent = '🔇';
+      }
+    }
+
+    // Mini visualizer simulation
+    const visBars = document.querySelectorAll('.vis-bar');
+    setInterval(() => {
+      if (!bgAudio.paused) {
+        visBars.forEach(bar => {
+          const rand = Math.floor(Math.random() * 85) + 15;
+          bar.style.height = rand + '%';
+        });
+      } else {
+        visBars.forEach(bar => bar.style.height = '10%');
+      }
+    }, 120);
+
+    /* ========================================================
+       2. RETRO SOUND EFFECTS (Web Audio API Synthesizer)
+       ======================================================== */
+    let audioCtx = null;
+    function getAudioContext() {
+      if (!audioCtx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (AudioContext) audioCtx = new AudioContext();
+      }
+      return audioCtx;
+    }
+
+    function playRetroChime(type) {
+      try {
+        const ctx = getAudioContext();
+        if (!ctx) return;
+        if (ctx.state === 'suspended') ctx.resume();
+
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        const now = ctx.currentTime;
+        if (type === 'error') {
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(150, now);
+          osc.frequency.setValueAtTime(120, now + 0.1);
+          gain.gain.setValueAtTime(0.15, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+          osc.start(now);
+          osc.stop(now + 0.35);
+        } else if (type === 'lottery') {
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(523.25, now);
+          osc.frequency.setValueAtTime(659.25, now + 0.08);
+          osc.frequency.setValueAtTime(783.99, now + 0.16);
+          osc.frequency.setValueAtTime(1046.50, now + 0.24);
+          gain.gain.setValueAtTime(0.18, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
+          osc.start(now);
+          osc.stop(now + 0.45);
+        } else if (type === 'hell') {
+          // Demonic Hydra chord
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(220, now);
+          osc.frequency.setValueAtTime(233.08, now + 0.08); // Tritone dissonance
+          gain.gain.setValueAtTime(0.16, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
+          osc.start(now);
+          osc.stop(now + 0.5);
+        } else if (type === 'fanfare') {
+          // Konami Victory Fanfare
+          [523.25, 659.25, 783.99, 1046.50, 1318.51].forEach((freq, idx) => {
+            const o = ctx.createOscillator();
+            const g = ctx.createGain();
+            o.type = 'square';
+            o.frequency.setValueAtTime(freq, now + idx * 0.1);
+            g.gain.setValueAtTime(0.1, now + idx * 0.1);
+            g.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.1 + 0.2);
+            o.connect(g);
+            g.connect(ctx.destination);
+            o.start(now + idx * 0.1);
+            o.stop(now + idx * 0.1 + 0.2);
+          });
+        } else {
+          // Standard window ding
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(800, now);
+          osc.frequency.setValueAtTime(1200, now + 0.06);
+          gain.gain.setValueAtTime(0.1, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+          osc.start(now);
+          osc.stop(now + 0.25);
+        }
+      } catch (e) {
+        // Silently ignore audio synthesis restrictions
+      }
+    }
+
+    /* 56K Dial-Up Modem Synthesizer via Web Audio API */
+    function playModemDialUpHandshake() {
+      try {
+        const ctx = getAudioContext();
+        if (!ctx) return;
+        if (ctx.state === 'suspended') ctx.resume();
+
+        const statusEl = document.getElementById('ie-status');
+        if (statusEl) statusEl.textContent = 'Dialing 1-800-438-265 (AOL 56K Gateway)...';
+
+        const now = ctx.currentTime;
+
+        // Stage 1: Dial tone (350Hz + 440Hz)
+        const dt1 = ctx.createOscillator();
+        const dt2 = ctx.createOscillator();
+        const dtGain = ctx.createGain();
+        dt1.frequency.setValueAtTime(350, now);
+        dt2.frequency.setValueAtTime(440, now);
+        dtGain.gain.setValueAtTime(0.08, now);
+        dtGain.gain.setValueAtTime(0, now + 0.8);
+        dt1.connect(dtGain);
+        dt2.connect(dtGain);
+        dtGain.connect(ctx.destination);
+        dt1.start(now);
+        dt2.start(now);
+        dt1.stop(now + 0.8);
+        dt2.stop(now + 0.8);
+
+        // Stage 2: DTMF Dialing Beeps (7 touch-tones)
+        const dtmfPairs = [
+          [697, 1209], [770, 1336], [852, 1477],
+          [697, 1336], [770, 1209], [852, 1336], [941, 1477]
+        ];
+        dtmfPairs.forEach((pair, idx) => {
+          const tStart = now + 0.9 + idx * 0.09;
+          const o1 = ctx.createOscillator();
+          const o2 = ctx.createOscillator();
+          const g = ctx.createGain();
+          o1.frequency.setValueAtTime(pair[0], tStart);
+          o2.frequency.setValueAtTime(pair[1], tStart);
+          g.gain.setValueAtTime(0.12, tStart);
+          g.gain.setValueAtTime(0, tStart + 0.06);
+          o1.connect(g); o2.connect(g);
+          g.connect(ctx.destination);
+          o1.start(tStart); o2.start(tStart);
+          o1.stop(tStart + 0.06); o2.stop(tStart + 0.06);
+        });
+
+        // Stage 3: Ringing Tone
+        const ringStart = now + 1.7;
+        const r1 = ctx.createOscillator();
+        const r2 = ctx.createOscillator();
+        const rGain = ctx.createGain();
+        r1.frequency.setValueAtTime(440, ringStart);
+        r2.frequency.setValueAtTime(480, ringStart);
+        rGain.gain.setValueAtTime(0.09, ringStart);
+        rGain.gain.setValueAtTime(0, ringStart + 1.0);
+        r1.connect(rGain); r2.connect(rGain);
+        rGain.connect(ctx.destination);
+        r1.start(ringStart); r2.start(ringStart);
+        r1.stop(ringStart + 1.0); r2.stop(ringStart + 1.0);
+
+        // Stage 4: Remote Answer Carrier Tone (2100Hz pure tone)
+        const ansStart = now + 2.9;
+        const ansOsc = ctx.createOscillator();
+        const ansGain = ctx.createGain();
+        ansOsc.frequency.setValueAtTime(2100, ansStart);
+        ansGain.gain.setValueAtTime(0.1, ansStart);
+        ansGain.gain.exponentialRampToValueAtTime(0.001, ansStart + 1.1);
+        ansOsc.connect(ansGain);
+        ansGain.connect(ctx.destination);
+        ansOsc.start(ansStart);
+        ansOsc.stop(ansStart + 1.1);
+
+        // Stage 5: Baud negotiation frequency screech / FM chirp sweeps
+        const screechStart = now + 4.1;
+        const scrOsc = ctx.createOscillator();
+        const scrGain = ctx.createGain();
+        scrOsc.type = 'sawtooth';
+        scrOsc.frequency.setValueAtTime(1400, screechStart);
+        scrOsc.frequency.linearRampToValueAtTime(2400, screechStart + 0.4);
+        scrOsc.frequency.linearRampToValueAtTime(900, screechStart + 0.8);
+        scrOsc.frequency.linearRampToValueAtTime(1800, screechStart + 1.4);
+        scrGain.gain.setValueAtTime(0.12, screechStart);
+        scrGain.gain.exponentialRampToValueAtTime(0.001, screechStart + 1.6);
+        scrOsc.connect(scrGain);
+        scrGain.connect(ctx.destination);
+        scrOsc.start(screechStart);
+        scrOsc.stop(screechStart + 1.6);
+
+        // Stage 6: Triumphant "CONNECT 56000 bps V.90" Handshake Completion!
+        setTimeout(() => {
+          playRetroChime('lottery');
+          if (statusEl) statusEl.textContent = 'CONNECT 56000 V.90 / RELIABLE / COMPRESSION ACTIVE';
+          alert('📞 DIAL-UP HANDSHAKE SUCCESSFUL!\n\nConnected to America Online at 56,000 bps.\nMonthly telephone bill estimate: $148.50.');
+        }, 5800);
+      } catch (err) {
+        console.error('Dial-up synthesis error:', err);
+      }
+    }
+
+    /* ========================================================
+       3. 3D ROTATING BADGE CONTROLS
+       ======================================================== */
+    function setCardUA(ua) {
+      const container = document.getElementById('BestViewedIn');
+      container.className = ua;
+    }
+
+    function setCardMotion(motion) {
+      const boxes = document.querySelectorAll('#BestViewedIn .box');
+      boxes.forEach(box => {
+        box.classList.remove('stepped', 'stop');
+        if (motion === 'stepped') box.classList.add('stepped');
+        if (motion === 'stop') box.classList.add('stop');
+      });
+    }
+
+    /* ========================================================
+       4. DIVERSE, FUNNY POPUP DEFINITIONS
+       ======================================================== */
+    const POPUP_TEMPLATES = [
+      {
+        title: "http://ads1.revenue.net - ExclusiveRewards",
+        sound: "lottery",
+        styleType: "classic",
+        icon: "🎁",
+        content: `
+          <div style="text-align: center;">
+            <a href="javascript:void(0)" onclick="alert('CLAIMING FREE GATEWAY COMPUTER! Specifications: Intel Pentium 4 2.66GHz, 256MB DDR-SDRAM, 80GB HD, 48x CD-RW, 19-inch Color CRT Monitor! Shipping via USPS in 4-6 weeks.'); closePopup(this)">
+              <img src="./images/ad1.png" style="max-width: 100%; height: auto; border: 2px outset #ffffff; cursor: pointer;" alt="FREE Gateway Desktop Computer!">
+            </a>
+            <div style="display: flex; justify-content: center; gap: 8px; margin-top: 6px;">
+              <button class="default" onclick="alert('CLAIMING FREE GATEWAY COMPUTER! Enjoy your 19-inch Color CRT Monitor!'); closePopup(this)">Claim Free PC!</button>
+              <button onclick="closePopup(this)">Close Ad</button>
+            </div>
+          </div>
+        `
+      },
+      {
+        title: "Exclusive Internet Special Offer",
+        sound: "default",
+        styleType: "classic",
+        icon: "⭐",
+        content: `
+          <div style="text-align: center;">
+            <img src="./images/ad2.avif" style="max-width: 100%; max-height: 140px; height: auto; border: 1px inset #7e7e7e;" alt="Special Offer">
+            <div style="display: flex; justify-content: flex-end; gap: 6px; margin-top: 6px;">
+              <button class="default" onclick="closePopup(this)">Learn More</button>
+              <button onclick="closePopup(this)">Dismiss</button>
+            </div>
+          </div>
+        `
+      },
+      {
+        title: "WARNING: TOO MANY POPUPS DETECTED",
+        sound: "error",
+        styleType: "classic",
+        icon: "💥",
+        content: `
+          <div style="text-align: center;">
+            <p style="margin: 0 0 4px 0; font-size: 11px; font-weight: bold; color: red;">AD AVALANCHE IN PROGRESS!</p>
+            <div style="max-height: 160px; overflow-y: auto; border: 1px inset #7e7e7e; margin-bottom: 6px;">
+              <img src="./images/lotofads.png" style="max-width: 100%; height: auto;" alt="Lot of ads">
+            </div>
+            <div style="display: flex; justify-content: center; gap: 6px;">
+              <button class="default" onclick="spawnChaosFrenzy(); closePopup(this)">MORE POPUPS!!</button>
+              <button onclick="closePopup(this)">Save Me!</button>
+            </div>
+          </div>
+        `
+      },
+      {
+        title: "*** CONGRATULATIONS 1,000,000th VISITOR! ***",
+        sound: "lottery",
+        styleType: "classic",
+        icon: "🎰",
+        content: `
+          <div style="text-align: center;">
+            <p class="blink-text" style="color: #ff0000; font-size: 14px; margin: 0 0 6px 0;">
+              🎉 YOU ARE OUR 1,000,000th VISITOR! 🎉
+            </p>
+            <p style="margin: 4px 0; font-size: 11px;">
+              You have been selected to receive a <strong>FREE SONY DISCMAN</strong>, a <strong>2-SLICE TOASTER</strong>, and <strong>$1,000,000 CASH</strong>!
+            </p>
+            <div style="background: yellow; color: black; border: 1px dashed red; padding: 4px; font-weight: bold; margin: 6px 0;">
+              NO CREDIT CARD REQUIRED! 100% DIAL-UP LEGIT!
+            </div>
+            <div style="display: flex; justify-content: center; gap: 8px; margin-top: 8px;">
+              <button class="default" onclick="alert('CLAIMING PRIZE... Processing via 28.8k modem. Check your mailbox in 4-6 weeks!'); closePopup(this);">💰 CLAIM CASH NOW!</button>
+              <button onclick="closePopup(this)">I Hate Money</button>
+            </div>
+          </div>
+        `
+      },
+      {
+        title: "Windows Security Alert - CRITICAL TROJAN",
+        sound: "error",
+        styleType: "classic",
+        icon: "🚨",
+        content: `
+          <div>
+            <p style="margin: 0 0 6px 0; font-weight: bold; color: #800000;">
+              Warning: Trojan.FunkyDance.exe detected in C:\\WINDOWS\\SYSTEM32
+            </p>
+            <p style="margin: 4px 0; font-size: 11px;">
+              Your mouse cursor has been compromised. Download 128MB of extra RAM to neutralize the threat.
+            </p>
+            <div style="display: flex; justify-content: flex-end; gap: 6px; margin-top: 10px;">
+              <button class="default" onclick="alert('Downloading 128MB RAM over dial-up... Complete!'); closePopup(this)">Download RAM</button>
+              <button onclick="closePopup(this)">Ignore &amp; Pray</button>
+            </div>
+          </div>
+        `
+      },
+      {
+        title: "BonziBUDDY 4.0 - Your Friendly Purple Gorilla",
+        sound: "default",
+        styleType: "custom",
+        icon: "🦍",
+        content: `
+          <div>
+            <p style="margin: 0 0 6px 0; font-weight: bold; color: #4b0082;">
+              "Hello Surfer! Would you like to hear an awesome joke?"
+            </p>
+            <p style="margin: 4px 0; font-size: 11px;">
+              Why did the 56k modem cross the road? Because someone picked up the kitchen telephone handset! HAHAHAHA!
+            </p>
+            <div style="display: flex; justify-content: flex-end; gap: 6px; margin-top: 10px;">
+              <button onclick="alert('Bonzi thanks you for being a true cyber friend!'); closePopup(this)">Sing a song!</button>
+              <button onclick="closePopup(this)">Go away Bonzi</button>
+            </div>
+          </div>
+        `
+      },
+      {
+        title: "Connecting to AOL 4.0 - Dial-Up Handshake",
+        sound: "default",
+        styleType: "classic",
+        icon: "📞",
+        content: `
+          <div>
+            <p style="margin: 0 0 4px 0; font-weight: bold;">
+              Negotiating Carrier at 14,400 bps...
+            </p>
+            <p style="font-family: monospace; font-size: 10px; background: #000; color: #00ff00; padding: 4px; margin: 4px 0;">
+              CONNECT 14400/V.42bis<br>
+              BZZZT... KRRRRR... DING-DONG... SHHHHHH
+            </p>
+            <p style="margin: 4px 0; font-size: 11px; color: red;">
+              Warning: Mom is about to call grandma. You have 3 minutes left.
+            </p>
+            <div style="display: flex; justify-content: flex-end; gap: 6px; margin-top: 8px;">
+              <button class="default" onclick="playModemDialUpHandshake(); closePopup(this)">Hear Handshake</button>
+              <button onclick="closePopup(this)">Disconnect</button>
+            </div>
+          </div>
+        `
+      },
+      {
+        title: "IEXPLORE.EXE - Illegal Operation",
+        sound: "error",
+        styleType: "classic",
+        icon: "❌",
+        content: `
+          <div>
+            <p style="margin: 0 0 6px 0;">
+              This program has performed an illegal operation and will be shut down.
+            </p>
+            <p style="font-size: 10px; font-family: monospace; color: #444; margin: 4px 0;">
+              Module FUNNY.DLL caused an invalid page fault at 0028:C003BEEF.
+            </p>
+            <div style="display: flex; justify-content: flex-end; gap: 6px; margin-top: 10px;">
+              <button class="default" onclick="closePopup(this)">Close</button>
+              <button onclick="alert('Details: CPU overclocked with ice cube. Stack overflow in brain.sys.');">Details &gt;&gt;</button>
+            </div>
+          </div>
+        `
+      },
+      {
+        title: "Drive A: Not Ready",
+        sound: "error",
+        styleType: "classic",
+        icon: "💾",
+        content: `
+          <div>
+            <p style="margin: 0 0 6px 0;">
+              Cannot read 3.5" floppy disk in Drive A:.
+            </p>
+            <p style="font-size: 11px; margin: 4px 0;">
+              Please blow firmly into the disk drive slot and slide the metal shutter back and forth 3 times.
+            </p>
+            <div style="display: flex; justify-content: flex-end; gap: 6px; margin-top: 10px;">
+              <button onclick="closePopup(this)">Abort</button>
+              <button onclick="closePopup(this)">Retry</button>
+              <button onclick="closePopup(this)">Fail</button>
+            </div>
+          </div>
+        `
+      },
+      {
+        title: "Special Offer: Evasive Close Button",
+        sound: "default",
+        styleType: "classic",
+        icon: "💨",
+        content: `
+          <div>
+            <p style="margin: 0 0 6px 0; font-weight: bold;">
+              Are you 100% sure you want to cancel your free 500 AOL hours?
+            </p>
+            <p style="font-size: 11px; margin: 4px 0;">
+              Try to click the "Decline Offer" button below! Go ahead, give it a shot!
+            </p>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 14px; min-height: 34px; position: relative;">
+              <button class="default" onclick="alert('Congratulations on accepting AOL 4.0! A CD-ROM is being mailed to your house.'); closePopup(this)">Accept Free Hours</button>
+              <button class="evasive-target" onmouseenter="evadeCursor(this)" onclick="closePopup(this)">Decline Offer</button>
+            </div>
+          </div>
+        `
+      },
+      {
+        title: "Limewire 2.4 - Download Complete!",
+        sound: "lottery",
+        styleType: "classic",
+        icon: "🎵",
+        content: `
+          <div>
+            <p style="margin: 0 0 4px 0; font-weight: bold; color: #000080;">
+              File Download Complete:
+            </p>
+            <div style="background: #fff; border: 1px inset #777; padding: 4px; font-family: monospace; font-size: 10px; margin: 4px 0;">
+              Britney_Spears_Baby_One_More_Time_REAL_MP3_NO_VIRUS.exe (18.4 KB)
+            </div>
+            <p style="font-size: 11px; color: red; margin: 4px 0;">
+              Wait... why is a 3-minute MP3 song an executable (.exe) file with a skull icon?
+            </p>
+            <div style="display: flex; justify-content: flex-end; gap: 6px; margin-top: 8px;">
+              <button class="default" onclick="alert('Running virus... CPU fan spinning at 9,000 RPM!'); closePopup(this)">Run File Anyway</button>
+              <button onclick="closePopup(this)">Quarantine</button>
+            </div>
+          </div>
+        `
+      },
+      {
+        title: "YEAR 2000 BUG APOCALYPSE WARNING",
+        sound: "error",
+        styleType: "classic",
+        icon: "⏳",
+        content: `
+          <div>
+            <p style="margin: 0 0 4px 0; font-weight: bold; color: #800000;">
+              ⚠️ Critical Y2K Compliance Notice!
+            </p>
+            <p style="font-size: 11px; margin: 4px 0;">
+              Your BIOS clock does not understand the 21st century! At midnight December 31, 1999, your elevator and microwave will reset to 1900.
+            </p>
+            <div style="display: flex; justify-content: flex-end; gap: 6px; margin-top: 8px;">
+              <button class="default" onclick="alert('Y2K Patch installed! Windows 98 will now safely party like it is 1999.'); closePopup(this)">Install Y2K Patch</button>
+              <button onclick="closePopup(this)">Buy Canned Beans</button>
+            </div>
+          </div>
+        `
+      },
+      {
+        title: "America Online Special Delivery",
+        sound: "default",
+        styleType: "classic",
+        icon: "💿",
+        content: `
+          <div>
+            <p style="margin: 0 0 4px 0; font-weight: bold; color: #000080;">
+              📬 5,000,000 Free Hours CD-ROM Shipped!
+            </p>
+            <p style="font-size: 11px; margin: 4px 0;">
+              A postal delivery van has arrived with 4,200 silver AOL Version 5.0 CD-ROMs. They make excellent coffee coasters and frisbees.
+            </p>
+            <div style="display: flex; justify-content: flex-end; gap: 6px; margin-top: 8px;">
+              <button class="default" onclick="alert('4,200 CD-ROMs unloaded into your living room.'); closePopup(this)">Accept Shipment</button>
+              <button onclick="closePopup(this)">Use as Coasters</button>
+            </div>
+          </div>
+        `
+      }
+    ];
+
+    /* ========================================================
+       5. POPUP ENGINE & TOMAS PETRICEK'S "POPUP FROM HELL"
+       ======================================================== */
+    let popupIndex = 0;
+    let highestZ = 120;
+    let activePopups = 0;
+    let hellPopupsCount = 0;
+    let autoSpawning = true;
+    let autoSpawnTimer = null;
+
+    // The Famous "Popup from Hell" (Closing one triggers two() -> spawns two!)
+    function spawnHellPopup() {
+      hellPopupsCount++;
+      updateHellPopupsCount();
+      playRetroChime('hell');
+
+      const popupId = 'hell-popup-' + (++popupIndex);
+      const popupWidth = 360;
+      const popupHeight = 170;
+      const margin = 20;
+      const maxLeft = Math.max(margin, window.innerWidth - popupWidth - margin);
+      const maxTop = Math.max(margin, window.innerHeight - popupHeight - 50 - margin);
+
+      const left = Math.floor(Math.random() * maxLeft);
+      const top = Math.floor(Math.random() * maxTop);
+
+      const popupEl = document.createElement('div');
+      popupEl.id = popupId;
+      popupEl.className = 'popup-window app-window window';
+      popupEl.style.left = left + 'px';
+      popupEl.style.top = top + 'px';
+      popupEl.style.width = popupWidth + 'px';
+      popupEl.style.zIndex = ++highestZ;
+
+      popupEl.innerHTML = `
+        <div class="title-bar" onmousedown="bringToFront('${popupId}'); startDrag(event, '${popupId}')">
+          <div class="title-bar-text">C:\\test.html - Microsoft Internet Explorer</div>
+          <div class="title-bar-controls">
+            <button aria-label="Close" onclick="closeHellPopup('${popupId}')"></button>
+          </div>
+        </div>
+        <div class="window-body stars-bg" style="padding: 10px; text-align: center;">
+          <marquee scrollamount="9" style="color: white; font-family: 'Times New Roman', serif; font-size: 26px; font-weight: bold; margin: 10px 0;">
+            Close me if you can!
+          </marquee>
+          <div style="display: flex; justify-content: center; gap: 8px; margin-top: 8px;">
+            <input type="button" value="Click me!" onclick="spawnHellPopup()" style="font-family: inherit; font-size: 11px;">
+            <button onclick="closeHellPopup('${popupId}')" style="background: silver; color: black;">Close Window [X]</button>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('popups-container').appendChild(popupEl);
+      activePopups++;
+      updatePopupCount();
+
+      popupEl.addEventListener('mousedown', () => bringToFront(popupId));
+    }
+
+    // Hydra effect: Closing one spawns two!
+    function closeHellPopup(popupId) {
+      const popupEl = document.getElementById(popupId);
+      if (!popupEl) return;
+      removePopupElement(popupEl);
+
+      // Hydra multiplier (two() spawns one(); one())
+      // Check ceiling to prevent browser tab crash if user goes crazy
+      if (activePopups < 22) {
+        setTimeout(() => spawnHellPopup(), 90);
+        setTimeout(() => spawnHellPopup(), 280);
+      } else {
+        alert("HYDRA OVERLOAD! System resources at 100%. The exorcist is needed!");
+      }
+    }
+
+    function exorciseHellPopups() {
+      const hells = document.querySelectorAll('[id^="hell-popup-"]');
+      hells.forEach(h => removePopupElement(h));
+      hellPopupsCount = 0;
+      updateHellPopupsCount();
+      playRetroChime('lottery');
+      alert("✝️ Holy water applied! All Hell popups vanquished.");
+    }
+
+    function updateHellPopupsCount() {
+      const el = document.getElementById('hell-popups-count');
+      if (el) el.textContent = `Hell Popups: ${hellPopupsCount}`;
+    }
+
+    // Spawn Grand Winner Big Popup (Using the uploaded Retro Internet Explorer Winner Popup.png)
+    function spawnWinnerBigPopup() {
+      playRetroChime('lottery');
+      const popupId = 'popup-' + (++popupIndex);
+      const popupWidth = 440;
+      const margin = 20;
+      const maxLeft = Math.max(margin, window.innerWidth - popupWidth - margin);
+      const maxTop = Math.max(margin, window.innerHeight - 340 - margin);
+      const left = Math.floor(Math.random() * maxLeft);
+      const top = Math.floor(Math.random() * maxTop);
+
+      const popupEl = document.createElement('div');
+      popupEl.id = popupId;
+      popupEl.className = 'popup-window app-window window';
+      popupEl.style.left = left + 'px';
+      popupEl.style.top = top + 'px';
+      popupEl.style.width = popupWidth + 'px';
+      popupEl.style.zIndex = ++highestZ;
+
+      popupEl.innerHTML = `
+        <div class="title-bar" onmousedown="bringToFront('${popupId}'); startDrag(event, '${popupId}')">
+          <div class="title-bar-text">🏆 OFFICIAL WINNER NOTIFICATION - $1,000,000 CASH</div>
+          <div class="title-bar-controls">
+            <button aria-label="Close" onclick="closePopup(this)"></button>
+          </div>
+        </div>
+        <div class="window-body" style="padding: 6px; text-align: center;">
+          <img src="./images/Retro Internet Explorer Winner Popup.png" style="max-width: 100%; height: auto; border: 2px outset #ffffff; cursor: pointer;" alt="Winner!" onclick="alert('CLAIMING $1,000,000 PRIZE! Shipping delivery truck to your IP address 127.0.0.1.'); closePopup(this)">
+          <div style="display: flex; justify-content: center; gap: 8px; margin-top: 8px;">
+            <button class="default" onclick="alert('CLAIMED $1,000,000! Enjoy your fortune.'); closePopup(this)">💰 CLAIM $1,000,000 NOW!</button>
+            <button onclick="closePopup(this)">Close</button>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('popups-container').appendChild(popupEl);
+      activePopups++;
+      updatePopupCount();
+      popupEl.addEventListener('mousedown', () => bringToFront(popupId));
+    }
+
+    // Evasive Runaway Button Handler
+    function evadeCursor(btn) {
+      const parent = btn.parentElement;
+      const rect = parent.getBoundingClientRect();
+      const maxX = rect.width - btn.offsetWidth - 20;
+      const maxY = 50;
+
+      const randX = (Math.random() - 0.5) * maxX;
+      const randY = (Math.random() - 0.5) * maxY;
+      btn.style.transform = `translate(${randX}px, ${randY}px)`;
+    }
+
+    function spawnEvasivePopup() {
+      spawnPopup(POPUP_TEMPLATES[9]);
+    }
+
+    function spawnKazaaPopup() {
+      spawnPopup(POPUP_TEMPLATES[10]);
+    }
+
+    function spawnY2KPopup() {
+      spawnPopup(POPUP_TEMPLATES[11]);
+    }
+
+    function spawnAOLCDsPopup() {
+      spawnPopup(POPUP_TEMPLATES[12]);
+    }
+
+    // Standard Diverse Popup Generator
+    function spawnPopup(customTemplate = null) {
+      const template = customTemplate || POPUP_TEMPLATES[Math.floor(Math.random() * POPUP_TEMPLATES.length)];
+      const popupId = 'popup-' + (++popupIndex);
+
+      playRetroChime(template.sound || 'default');
+
+      const popupWidth = 340;
+      const popupHeight = 220;
+      const margin = 20;
+      const maxLeft = Math.max(margin, window.innerWidth - popupWidth - margin);
+      const maxTop = Math.max(margin, window.innerHeight - popupHeight - 50 - margin);
+
+      const left = Math.floor(Math.random() * maxLeft);
+      const top = Math.floor(Math.random() * maxTop);
+
+      // Auto-close duration: 6 to 9 seconds
+      const durationMs = Math.floor(Math.random() * 3000) + 6000;
+
+      const popupEl = document.createElement('div');
+      popupEl.id = popupId;
+      popupEl.className = 'popup-window ' + (template.styleType === 'custom' ? 'retro-box-style' : 'app-window window');
+      popupEl.style.left = left + 'px';
+      popupEl.style.top = top + 'px';
+      popupEl.style.zIndex = ++highestZ;
+
+      if (template.styleType === 'custom') {
+        popupEl.innerHTML = `
+          <div class="retro-custom-top" onmousedown="bringToFront('${popupId}'); startDrag(event, '${popupId}')">
+            <div class="window-title">${template.title}</div>
+            <div class="icon-btn" onclick="closePopup(this)">☒</div>
+          </div>
+          <div style="padding: 8px;">
+            <div class="popup-body-inner">
+              <div class="popup-icon-badge">${template.icon}</div>
+              <div style="flex: 1;">${template.content}</div>
+            </div>
+            <div class="popup-timer-bar-wrap" title="Auto-closing in ${(durationMs/1000).toFixed(1)}s">
+              <div class="popup-timer-bar" id="${popupId}-timer"></div>
+            </div>
+          </div>
+        `;
+      } else {
+        popupEl.innerHTML = `
+          <div class="title-bar" onmousedown="bringToFront('${popupId}'); startDrag(event, '${popupId}')">
+            <div class="title-bar-text">${template.title}</div>
+            <div class="title-bar-controls">
+              <button aria-label="Close" onclick="closePopup(this)"></button>
+            </div>
+          </div>
+          <div class="window-body" style="padding: 8px;">
+            <div class="popup-body-inner">
+              <div class="popup-icon-badge">${template.icon}</div>
+              <div style="flex: 1;">${template.content}</div>
+            </div>
+            <div class="popup-timer-bar-wrap" title="Auto-closing in ${(durationMs/1000).toFixed(1)}s">
+              <div class="popup-timer-bar" id="${popupId}-timer"></div>
+            </div>
+          </div>
+        `;
+      }
+
+      document.getElementById('popups-container').appendChild(popupEl);
+      activePopups++;
+      updatePopupCount();
+
+      setTimeout(() => {
+        const timerBar = document.getElementById(`${popupId}-timer`);
+        if (timerBar) {
+          timerBar.style.transition = `width ${durationMs}ms linear`;
+          timerBar.style.width = '0%';
+        }
+      }, 50);
+
+      const closeTimer = setTimeout(() => {
+        removePopupElement(popupEl);
+      }, durationMs);
+
+      popupEl.dataset.closeTimer = closeTimer;
+      popupEl.addEventListener('mousedown', () => bringToFront(popupId));
+
+      return popupEl;
+    }
+
+    function closePopup(elementOrChild) {
+      const popup = elementOrChild.closest ? elementOrChild.closest('.popup-window') : elementOrChild;
+      if (popup) {
+        clearTimeout(popup.dataset.closeTimer);
+        removePopupElement(popup);
+      }
+    }
+
+    function removePopupElement(popupEl) {
+      if (!popupEl || !popupEl.parentNode) return;
+      popupEl.style.transition = 'opacity 0.2s, transform 0.2s';
+      popupEl.style.opacity = '0';
+      popupEl.style.transform = 'scale(0.85)';
+      setTimeout(() => {
+        if (popupEl.parentNode) {
+          popupEl.parentNode.removeChild(popupEl);
+          activePopups = Math.max(0, activePopups - 1);
+          updatePopupCount();
+        }
+      }, 200);
+    }
+
+    function closeAllPopups() {
+      const container = document.getElementById('popups-container');
+      container.innerHTML = '';
+      activePopups = 0;
+      updatePopupCount();
+    }
+
+    function updatePopupCount() {
+      const countEl = document.getElementById('active-popups-count');
+      if (countEl) countEl.textContent = `Active Popups: ${activePopups}`;
+    }
+
+    function spawnGatewayAd() { spawnPopup(POPUP_TEMPLATES[0]); }
+    function spawnSponsorAd() { spawnPopup(POPUP_TEMPLATES[1]); }
+    function spawnAdAvalanche() { spawnPopup(POPUP_TEMPLATES[2]); }
+    function spawnLotteryPopup() { spawnPopup(POPUP_TEMPLATES[3]); }
+    function spawnVirusAlert() { spawnPopup(POPUP_TEMPLATES[4]); }
+    function spawnBonziBuddy() { spawnPopup(POPUP_TEMPLATES[5]); }
+    function spawnDialUpNotice() { spawnPopup(POPUP_TEMPLATES[6]); }
+    function spawnIllegalOperation() { spawnPopup(POPUP_TEMPLATES[7]); }
+    function spawnFloppyError() { spawnPopup(POPUP_TEMPLATES[8]); }
+    function spawnDownloadRam() {
+      alert("DOWNLOADING 1 TERABYTE OF RAM OVER 56K MODEM...\n\nEstimated time: 3,420 years.\nAllocating virtual swap memory...");
+      setTimeout(() => triggerBSOD(), 1200);
+    }
+
+    function spawnChaosFrenzy() {
+      for (let i = 0; i < 5; i++) {
+        setTimeout(() => spawnPopup(), i * 300);
+      }
+    }
+
+    function spawnRandomPopup() {
+      const r = Math.random();
+      if (r < 0.25) {
+        spawnHellPopup();
+      } else if (r < 0.45) {
+        spawnWinnerBigPopup();
+      } else {
+        spawnPopup();
+      }
+    }
+
+    // Auto-spawning Loop
+    function scheduleNextAutoPopup() {
+      if (!autoSpawning) return;
+      const delay = Math.floor(Math.random() * 3000) + 4000;
+      autoSpawnTimer = setTimeout(() => {
+        if (autoSpawning && activePopups < 7) {
+          spawnRandomPopup();
+        }
+        scheduleNextAutoPopup();
+      }, delay);
+    }
+
+    function toggleAutoSpawning() {
+      autoSpawning = !autoSpawning;
+      const btn = document.getElementById('toggle-spawning-btn');
+      if (autoSpawning) {
+        btn.textContent = '⏸ Pause Auto-Popups';
+        scheduleNextAutoPopup();
+      } else {
+        btn.textContent = '▶ Resume Auto-Popups';
+        clearTimeout(autoSpawnTimer);
+      }
+    }
+
+    function stopSpawning() {
+      autoSpawning = false;
+      clearTimeout(autoSpawnTimer);
+      const btn = document.getElementById('toggle-spawning-btn');
+      if (btn) btn.textContent = '▶ Resume Auto-Popups';
+    }
+
+    /* ========================================================
+       6. DRAGGABLE WINDOWS & Z-INDEX FOCUS
+       ======================================================== */
+    let dragState = null;
+
+    function bringToFront(windowId) {
+      const win = document.getElementById(windowId);
+      if (win) {
+        win.style.zIndex = ++highestZ;
+        document.querySelectorAll('.app-window').forEach(w => w.classList.remove('active-window'));
+        win.classList.add('active-window');
+      }
+    }
+
+    function startDrag(e, windowId) {
+      const win = document.getElementById(windowId);
+      if (!win) return;
+      bringToFront(windowId);
+
+      const rect = win.getBoundingClientRect();
+      dragState = {
+        element: win,
+        offsetX: e.clientX - rect.left,
+        offsetY: e.clientY - rect.top
+      };
+
+      document.addEventListener('mousemove', onDragMove);
+      document.addEventListener('mouseup', onDragEnd);
+      e.preventDefault();
+    }
+
+    function onDragMove(e) {
+      if (!dragState) return;
+      const left = Math.max(0, Math.min(window.innerWidth - 80, e.clientX - dragState.offsetX));
+      const top = Math.max(0, Math.min(window.innerHeight - 60, e.clientY - dragState.offsetY));
+      dragState.element.style.left = left + 'px';
+      dragState.element.style.top = top + 'px';
+    }
+
+    function onDragEnd() {
+      dragState = null;
+      document.removeEventListener('mousemove', onDragMove);
+      document.removeEventListener('mouseup', onDragEnd);
+    }
+
+    function openOrFocus(windowId) {
+      const win = document.getElementById(windowId);
+      if (win) {
+        win.style.display = 'block';
+        bringToFront(windowId);
+        updateTaskbarStatus(windowId, true);
+      }
+    }
+
+    function minimizeWindow(windowId) {
+      const win = document.getElementById(windowId);
+      if (win) {
+        win.style.display = 'none';
+        updateTaskbarStatus(windowId, false);
+      }
+    }
+
+    function updateTaskbarStatus(windowId, isOpen) {
+      let taskBtn = null;
+      if (windowId === 'ie-window') taskBtn = document.getElementById('task-ie');
+      else if (windowId === 'media-window') taskBtn = document.getElementById('task-media');
+      else if (windowId === 'defrag-window') taskBtn = document.getElementById('task-defrag');
+      else if (windowId === 'dos-window') taskBtn = document.getElementById('task-dos');
+
+      if (taskBtn) {
+        taskBtn.style.display = isOpen ? 'flex' : 'none';
+        if (isOpen) taskBtn.classList.add('active');
+        else taskBtn.classList.remove('active');
+      }
+    }
+
+    function maximizeWindow(windowId) {
+      const win = document.getElementById(windowId);
+      if (!win) return;
+      if (win.dataset.maximized === 'true') {
+        win.style.top = win.dataset.origTop;
+        win.style.left = win.dataset.origLeft;
+        win.style.width = win.dataset.origWidth;
+        win.style.height = win.dataset.origHeight;
+        win.dataset.maximized = 'false';
+      } else {
+        win.dataset.origTop = win.style.top || '25px';
+        win.dataset.origLeft = win.style.left || '195px';
+        win.dataset.origWidth = win.style.width || '700px';
+        win.dataset.origHeight = win.style.height || 'auto';
+        win.style.top = '0px';
+        win.style.left = '0px';
+        win.style.width = '100vw';
+        win.style.height = 'calc(100vh - 30px)';
+        win.dataset.maximized = 'true';
+      }
+    }
+
+    function toggleWindowFromTaskbar(windowId, taskBtn) {
+      const win = document.getElementById(windowId);
+      if (!win) return;
+      if (win.style.display === 'none') {
+        win.style.display = 'block';
+        bringToFront(windowId);
+        taskBtn.classList.add('active');
+      } else {
+        if (win.classList.contains('active-window')) {
+          win.style.display = 'none';
+          taskBtn.classList.remove('active');
+        } else {
+          bringToFront(windowId);
+          taskBtn.classList.add('active');
+        }
+      }
+    }
+
+    /* ========================================================
+       7. START MENU & SYSTEM TRAY CLOCK
+       ======================================================== */
+    function toggleStartMenu() {
+      const menu = document.getElementById('start-menu');
+      const btn = document.getElementById('start-btn');
+      menu.classList.toggle('open');
+      btn.classList.toggle('pressed');
+    }
+
+    document.addEventListener('click', (e) => {
+      const menu = document.getElementById('start-menu');
+      const btn = document.getElementById('start-btn');
+      if (menu.classList.contains('open') && !menu.contains(e.target) && !btn.contains(e.target)) {
+        menu.classList.remove('open');
+        btn.classList.remove('pressed');
+      }
+    });
+
+    function updateClock() {
+      const now = new Date();
+      let hours = now.getHours();
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12 || 12;
+      document.getElementById('tray-clock').textContent = `${hours}:${minutes} ${ampm}`;
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
+
+    function triggerShutDown() {
+      alert("It is now safe to turn off your computer.");
+      document.body.innerHTML = `
+        <div style="background: black; color: #ff8c00; font-family: monospace; font-size: 24px; font-weight: bold; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 20px;">
+          <div>IT IS NOW SAFE TO TURN OFF YOUR COMPUTER.</div>
+          <button style="font-size: 16px; padding: 8px 16px; cursor: pointer;" onclick="location.reload()">Reboot Windows 98</button>
+        </div>
+      `;
+    }
+
+    /* ========================================================
+       8. CLIPPY THE ASSISTANT LOGIC 📎
+       ======================================================== */
+    const CLIPPY_TIPS = [
+      "Tip: If your 56K modem gets stuck, try blowing into the phone jack.",
+      "Did you know? In 1998, 64MB of RAM was enough to run NASA and three spreadsheets.",
+      "It looks like you haven't defragmented Drive C: since Bill Clinton was in office.",
+      "You have received 48 AOL trial CDs in your physical mailbox this week.",
+      "Warning: Your Netscape Navigator license expired 9,412 days ago.",
+      "Tip: Pressing Ctrl+Alt+Del 4 times in a row makes your computer run 200% faster (probably).",
+      "Notice: Mom is about to pick up the downstairs telephone. You have 30 seconds to finish downloading this MP3."
+    ];
+
+    let clippyTimer = null;
+
+    function summonClippy() {
+      const assistant = document.getElementById('clippy-assistant');
+      assistant.style.display = 'flex';
+      const bubble = document.getElementById('clippy-bubble');
+      bubble.style.display = 'block';
+      playRetroChime('default');
+    }
+
+    function dismissClippy() {
+      const bubble = document.getElementById('clippy-bubble');
+      bubble.style.display = 'none';
+    }
+
+    function pokeClippy() {
+      playRetroChime('default');
+      const sprite = document.querySelector('.clippy-sprite-wrap');
+      sprite.style.transform = 'scale(1.25) rotate(-15deg)';
+      setTimeout(() => {
+        sprite.style.transform = 'scale(1) rotate(0deg)';
+      }, 200);
+
+      const msgEl = document.getElementById('clippy-message');
+      const randomTip = CLIPPY_TIPS[Math.floor(Math.random() * CLIPPY_TIPS.length)];
+      msgEl.innerHTML = randomTip;
+      document.getElementById('clippy-bubble').style.display = 'block';
+    }
+
+    function handleClippyAction(action) {
+      if (action === 'joke') {
+        const jokes = [
+          "Why did the 56k modem cross the road? Because someone picked up the kitchen telephone handset!",
+          "Why was the computer cold? Because it left its Windows open!",
+          "How many programmers does it take to change a lightbulb? None, that's a hardware problem."
+        ];
+        document.getElementById('clippy-message').textContent = jokes[Math.floor(Math.random() * jokes.length)];
+      } else if (action === 'modem') {
+        playModemDialUpHandshake();
+        dismissClippy();
+      } else if (action === 'comicsans') {
+        toggleComicSans();
+        document.getElementById('clippy-message').textContent = "Everything is now in Comic Sans MS. As the design gods intended.";
+      } else if (action === 'chaos') {
+        spawnChaosFrenzy();
+        dismissClippy();
+      } else if (action === 'bsod') {
+        triggerBSOD();
+      }
+    }
+
+    // Auto rotate clippy tips
+    setInterval(() => {
+      const bubble = document.getElementById('clippy-bubble');
+      if (bubble && bubble.style.display !== 'none' && Math.random() > 0.6) {
+        document.getElementById('clippy-message').textContent = CLIPPY_TIPS[Math.floor(Math.random() * CLIPPY_TIPS.length)];
+      }
+    }, 22000);
+
+    /* ========================================================
+       9. BLUE SCREEN OF DEATH (BSOD) SIMULATOR 💀
+       ======================================================== */
+    function triggerBSOD() {
+      playRetroChime('error');
+      const bsod = document.getElementById('bsod-overlay');
+      bsod.style.display = 'block';
+      bsod.focus();
+    }
+
+    function dismissBSOD() {
+      const bsod = document.getElementById('bsod-overlay');
+      if (bsod.style.display === 'block') {
+        bsod.style.display = 'none';
+        playRetroChime('fanfare');
+        alert("Windows 98 recovered from an unrecoverable failure.\n\nPlease don't do that again.");
+      }
+    }
+
+    // Listen for Ctrl+Alt+Del shortcut
+    window.addEventListener('keydown', (e) => {
+      if (e.ctrlKey && e.altKey && (e.key === 'Delete' || e.code === 'Delete' || e.key === 'd')) {
+        triggerBSOD();
+      }
+    });
+
+    /* ========================================================
+       10. DISK DEFRAGMENTER ENGINE (defrag.exe) 💽
+       ======================================================== */
+    let defragInterval = null;
+    let defragPercent = 14;
+    let defragPaused = false;
+
+    function initDefragGrid() {
+      const grid = document.getElementById('defrag-grid');
+      grid.innerHTML = '';
+      for (let i = 0; i < 180; i++) {
+        const cell = document.createElement('div');
+        cell.className = 'cluster-cell';
+        const r = Math.random();
+        if (r < 0.22) cell.classList.add('free');
+        else if (r < 0.26) cell.classList.add('bad');
+        grid.appendChild(cell);
+      }
+    }
+    initDefragGrid();
+
+    function startDefragSimulation() {
+      if (defragInterval) clearInterval(defragInterval);
+      defragInterval = setInterval(() => {
+        if (defragPaused) return;
+        const cells = document.querySelectorAll('.cluster-cell');
+        const randIndex = Math.floor(Math.random() * cells.length);
+        const cell = cells[randIndex];
+
+        if (!cell.classList.contains('bad')) {
+          cell.classList.add('moving');
+          setTimeout(() => {
+            cell.classList.remove('moving');
+            if (Math.random() > 0.5) {
+              cell.classList.remove('free');
+            } else {
+              cell.classList.add('free');
+            }
+          }, 350);
+        }
+
+        if (Math.random() > 0.7 && defragPercent < 100) {
+          defragPercent += 1;
+          const bar = document.getElementById('defrag-progress-bar');
+          if (bar) bar.style.width = defragPercent + '%';
+          const header = document.querySelector('#defrag-window strong');
+          if (header) header.textContent = `Drive C: ${defragPercent}% Defragmented`;
+        }
+
+        if (defragPercent >= 100) {
+          clearInterval(defragInterval);
+          document.getElementById('defrag-status-text').textContent = 'Defragmentation Complete!';
+          playRetroChime('fanfare');
+        }
+      }, 400);
+    }
+    startDefragSimulation();
+
+    function toggleDefragPause() {
+      defragPaused = !defragPaused;
+      const btn = document.getElementById('defrag-pause-btn');
+      btn.textContent = defragPaused ? 'Resume' : 'Pause';
+      document.getElementById('defrag-status-text').textContent = defragPaused ? 'Paused' : 'Optimizing clusters...';
+    }
+
+    function resetDefrag() {
+      defragPercent = 5;
+      initDefragGrid();
+      startDefragSimulation();
+      document.getElementById('defrag-progress-bar').style.width = '5%';
+    }
+
+    /* ========================================================
+       11. MS-DOS PROMPT INTERPRETER (command.com) 💻
+       ======================================================== */
+    function handleDosKey(e) {
+      if (e.key === 'Enter') {
+        const input = document.getElementById('dos-input');
+        const cmd = input.value.trim().toLowerCase();
+        input.value = '';
+        executeDosCommand(cmd);
+      }
+    }
+
+    function executeDosCommand(cmd) {
+      const history = document.getElementById('dos-history');
+      const cmdEcho = document.createElement('div');
+      cmdEcho.textContent = `C:\\WINDOWS> ${cmd}`;
+      history.appendChild(cmdEcho);
+
+      const resp = document.createElement('div');
+      resp.style.color = '#00ff00';
+
+      if (cmd === 'dir') {
+        resp.innerHTML = `
+ Volume in drive C is RETRO_OS<br>
+ Volume Serial Number is 1998-DEAD<br>
+ Directory of C:\\WINDOWS<br><br>
+COMMAND  COM        93,880  05-11-98  8:00p<br>
+SYSTEM   INI           482  10-28-98  4:12p<br>
+WIN      COM        24,812  05-11-98  8:00p<br>
+DOOM     EXE     1,432,010  12-10-93 12:00a<br>
+PANNY    HTM        73,761  10-28-98 11:15p<br>
+FUNDAY   MP3     4,194,304  10-28-98 12:35a<br>
+         6 file(s)      5,818,449 bytes<br>
+         2 dir(s)     420,690,000 bytes free
+        `;
+      } else if (cmd === 'ver') {
+        resp.textContent = 'Microsoft(R) Windows 98 [Version 4.10.1998]';
+      } else if (cmd === 'help') {
+        resp.innerHTML = 'Available commands: DIR, VER, HELP, CLS, DOOM, MATRIX, BSOD, CLIPPY, DEFRAG, MODEM, FORMAT C:, EXIT';
+      } else if (cmd === 'cls') {
+        history.innerHTML = '';
+        return;
+      } else if (cmd === 'doom' || cmd === 'iddqd') {
+        resp.textContent = 'IDDQD - GOD MODE ACTIVATED! Popups can no longer hurt you.';
+        playRetroChime('fanfare');
+      } else if (cmd === 'matrix') {
+        toggleMatrixMode();
+        resp.textContent = 'Matrix digital rain toggled on desktop.';
+      } else if (cmd === 'bsod') {
+        triggerBSOD();
+        resp.textContent = 'Crashing system...';
+      } else if (cmd === 'clippy') {
+        summonClippy();
+        resp.textContent = 'Clippy has been summoned.';
+      } else if (cmd === 'defrag') {
+        openOrFocus('defrag-window');
+        resp.textContent = 'Launching Disk Defragmenter...';
+      } else if (cmd === 'modem' || cmd === 'dialup') {
+        playModemDialUpHandshake();
+        resp.textContent = 'Dialing 56K carrier...';
+      } else if (cmd === 'format c:' || cmd === 'format c') {
+        resp.innerHTML = '<span style="color:red">Formatting Drive C:... Just kidding! Windows 98 protected your files.</span>';
+      } else if (cmd === 'exit') {
+        minimizeWindow('dos-window');
+        return;
+      } else if (cmd === '') {
+        // empty line
+      } else {
+        resp.innerHTML = `Bad command or file name: "${cmd}"`;
+      }
+
+      history.appendChild(resp);
+      const term = document.getElementById('dos-terminal');
+      term.scrollTop = term.scrollHeight;
+    }
+
+    /* ========================================================
+       12. START -> RUN... COMMAND LAUNCHER 🏃
+       ======================================================== */
+    function executeRunCommand() {
+      const input = document.getElementById('run-input');
+      const cmd = input.value.trim().toLowerCase();
+      minimizeWindow('run-window');
+      input.value = '';
+
+      if (cmd === 'clippy') summonClippy();
+      else if (cmd === 'bsod') triggerBSOD();
+      else if (cmd === 'defrag') openOrFocus('defrag-window');
+      else if (cmd === 'cmd' || cmd === 'command' || cmd === 'dos') openOrFocus('dos-window');
+      else if (cmd === 'modem' || cmd === 'dialup') playModemDialUpHandshake();
+      else if (cmd === 'winamp' || cmd === 'media') openOrFocus('media-window');
+      else if (cmd === 'matrix') toggleMatrixMode();
+      else if (cmd === 'hell') spawnHellPopup();
+      else if (cmd === 'winner' || cmd === 'lottery') spawnWinnerBigPopup();
+      else if (cmd === 'comic' || cmd === 'comicsans') toggleComicSans();
+      else if (cmd === 'stars') toggleMouseTrail();
+      else {
+        alert(`Cannot find the file '${cmd}' (or one of its components). Make sure the path and filename are correct.`);
+      }
+    }
+
+    /* ========================================================
+       13. 90s STAR CURSOR SPARKLE TRAIL ✨
+       ======================================================== */
+    let mouseTrailActive = true;
+    const sparkleColors = ['#ff00ff', '#00ffff', '#ffff00', '#00ff00', '#ffffff', '#ff9900'];
+    const sparkleSymbols = ['✦', '✧', '★', '✩', '•'];
+
+    document.addEventListener('mousemove', (e) => {
+      if (!mouseTrailActive) return;
+      if (Math.random() > 0.35) return; // throttle density
+
+      const sparkle = document.createElement('div');
+      sparkle.className = 'sparkle-particle';
+      sparkle.textContent = sparkleSymbols[Math.floor(Math.random() * sparkleSymbols.length)];
+      sparkle.style.left = (e.clientX + (Math.random() * 16 - 8)) + 'px';
+      sparkle.style.top = (e.clientY + (Math.random() * 16 - 8)) + 'px';
+      sparkle.style.color = sparkleColors[Math.floor(Math.random() * sparkleColors.length)];
+
+      document.body.appendChild(sparkle);
+      setTimeout(() => {
+        if (sparkle.parentNode) sparkle.parentNode.removeChild(sparkle);
+      }, 700);
+    });
+
+    function toggleMouseTrail() {
+      mouseTrailActive = !mouseTrailActive;
+      const icon = document.getElementById('tray-sparkle-icon');
+      if (icon) icon.style.opacity = mouseTrailActive ? '1' : '0.4';
+    }
+
+    /* ========================================================
+       14. COMIC SANS MODE TOGGLE 🔤
+       ======================================================== */
+    function toggleComicSans() {
+      document.body.classList.toggle('comic-sans');
+      const isComic = document.body.classList.contains('comic-sans');
+      playRetroChime('default');
+    }
+
+    /* ========================================================
+       15. MATRIX RAIN DIGITAL RAIN CANVAS 🟢
+       ======================================================== */
+    let matrixActive = false;
+    let matrixInterval = null;
+
+    function toggleMatrixMode() {
+      matrixActive = !matrixActive;
+      const canvas = document.getElementById('matrix-canvas');
+      if (matrixActive) {
+        canvas.style.display = 'block';
+        startMatrixRain();
+      } else {
+        canvas.style.display = 'none';
+        if (matrixInterval) clearInterval(matrixInterval);
+      }
+    }
+
+    function startMatrixRain() {
+      const canvas = document.getElementById('matrix-canvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const katakana = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZアイウエオカキクケコサシスセソタチツテト';
+      const fontSize = 16;
+      const columns = Math.floor(canvas.width / fontSize);
+      const drops = Array(columns).fill(1);
+
+      if (matrixInterval) clearInterval(matrixInterval);
+      matrixInterval = setInterval(() => {
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#00ff41';
+        ctx.font = `${fontSize}px monospace`;
+
+        for (let i = 0; i < drops.length; i++) {
+          const text = katakana.charAt(Math.floor(Math.random() * katakana.length));
+          ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+          if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+          }
+          drops[i]++;
+        }
+      }, 33);
+    }
+
+    /* ========================================================
+       16. RETRO SEARCH, WEBRING & GUESTBOOK
+       ======================================================== */
+    function searchAltaVista() {
+      const query = document.getElementById('altavista-query').value.trim() || 'retro web';
+      playRetroChime('default');
+      alert(`🔍 AltaVista Search Results for: "${query}"\n\nFound 1 match (4.8 seconds via 56k):\n1. "Welcome to Kevin\'s GeoCities Homestead (Under Construction Since 1996)"\n\nURL: http://www.geocities.com/Heartland/Plains/4921/index.htm`);
+    }
+
+    function navigateWebRing(dir) {
+      const sites = [
+        "http://www.geocities.com/Area51/Vault/1998/aliens_are_real.html",
+        "http://www.angelfire.com/dragon/dbz_goku_super_saiyan_midi/index.html",
+        "http://www.tripod.com/members/sailormoon_shrine_webring/index.html",
+        "http://www.geocities.com/Hollywood/Studio/90210_fan_club.html",
+        "http://www.geocities.com/SiliconValley/Panny/1998/index.html"
+      ];
+      const pick = sites[Math.floor(Math.random() * sites.length)];
+      playRetroChime('default');
+      alert(`🌐 GeoCities WebRing Navigation [${dir.toUpperCase()}]:\n\nTeleporting to neighboring cyber shrine:\n${pick}`);
+    }
+
+    function incrementHitCounter() {
+      const counter = document.getElementById('hit-counter');
+      let count = parseInt(counter.textContent, 10) || 74291;
+      count += 1;
+      counter.textContent = count.toString().padStart(7, '0');
+      playRetroChime('lottery');
+    }
+
+    function signGuestbook() {
+      const name = prompt("Enter your Cyber Handle / Nickname:", "CyberSurfer98");
+      if (!name) return;
+      const msg = prompt("Enter your Guestbook Message:", "Awesome 3D rotating badge dude!");
+      if (!msg) return;
+
+      const marquee = document.getElementById('guestbook-marquee');
+      marquee.innerHTML = `★★★ "~*~ ${msg} ~*~" (${name}, 1998) ★★★ ` + marquee.innerHTML;
+      incrementHitCounter();
+      alert("Thank you for signing Panny's Guestbook! Your signature has been etched into cyberspace.");
+    }
+
+    /* ========================================================
+       17. KONAMI CODE EASTER EGG (↑ ↑ ↓ ↓ ← → ← → B A)
+       ======================================================== */
+    const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+    let konamiPos = 0;
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key.toLowerCase() === konamiSequence[konamiPos].toLowerCase()) {
+        konamiPos++;
+        if (konamiPos === konamiSequence.length) {
+          konamiPos = 0;
+          playRetroChime('fanfare');
+          alert("🎮 KONAMI CODE ENTERED! 30 EXTRA LIVES GRANTED! POPUP FIESTA ACTIVATED!");
+          spawnChaosFrenzy();
+          spawnWinnerBigPopup();
+          toggleMatrixMode();
+        }
+      } else {
+        konamiPos = 0;
+      }
+    });
+
+    /* ========================================================
+       18. INITIALIZATION
+       ======================================================== */
+    // Execute immediately and on DOM load to give autoplay the earliest chance
+    tryAutoplayNow();
+
+    window.addEventListener('DOMContentLoaded', () => {
+      tryAutoplayNow();
+
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('demo') === '1') {
+        closeLoginDialog();
+        openOrFocus('defrag-window');
+        spawnWinnerBigPopup();
+        spawnLotteryPopup();
+      } else if (urlParams.get('clean') === '1') {
+        closeLoginDialog();
+      } else if (urlParams.get('bsod') === '1') {
+        closeLoginDialog();
+        triggerBSOD();
+      } else if (urlParams.get('dos') === '1') {
+        closeLoginDialog();
+        openOrFocus('dos-window');
+        setTimeout(() => executeDosCommand('dir'), 100);
+      } else {
+        // Start initial popup sequence after 2.5 seconds
+        setTimeout(() => {
+          spawnLotteryPopup();
+          scheduleNextAutoPopup();
+        }, 2500);
+      }
+    });
+  </script>
+</body>
+</html>

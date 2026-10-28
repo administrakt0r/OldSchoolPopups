@@ -1,0 +1,266 @@
+<style>
+/*  palette : https://lospec.com/palette-list/microsoft-windows */
+#a,
+#a:before,
+.b {
+  --height: 150px;
+  --width: 300px;
+
+  --padding: 10px;
+  --padding-top: 50px;
+  --padding-2: 5px;
+
+  --shadow-offset: 2px;
+  --shadow-length: 1px;
+  --border-radius: 2px;
+  --border-radius_small: 2px;
+
+  --box-shadow-fancy: var(--shadow-offset) var(--shadow-offset) 0
+      var(--shadow-length) #fff inset,
+    calc(-1 * var(--shadow-offset)) calc(-1 * var(--shadow-offset)) 0 #7e7e7e
+      inset,
+    var(--shadow-offset) var(--shadow-offset) 0 var(--shadow-length) #000;
+  --box-shadow-small: 1px 1px 0 1px #fff inset, -1px -1px 0 1px #7e7e7e inset,
+    1px 1px 0 1px #000;
+}
+
+#a {
+  height: var(--height);
+  width: var(--width);
+
+  padding: var(--padding);
+  padding-top: var(--padding-top);
+
+  box-shadow: var(--box-shadow-fancy);
+  border-radius: var(--border-radius);
+
+  box-sizing: border-box;
+  background: #bebebe;
+  position: relative;
+}
+
+#a-top {
+  position: absolute;
+
+  height: 30px;
+  width: calc(100% - 2 * var(--padding));
+
+  background: linear-gradient(90deg, #00007e, #0000ff 100%);
+  border-radius: var(--border-radius);
+
+  margin: -40px 0;
+
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  /*   gap: 10px; */
+}
+
+.icon {
+  height: 60%;
+  aspect-ratio: 1/1;
+
+  background: #bebebe;
+  margin-right: 5px;
+
+  box-shadow: var(--box-shadow-small);
+  border-radius: var(--border-radius-small);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Courier New";
+
+  &:hover {
+    filter: brightness(1.1);
+  }
+}
+
+.window-title {
+  color: white;
+  font-family: "Courier New";
+  font-weight: bold;
+
+  margin-left: 5px;
+  margin-right: auto;
+}
+
+.b {
+  overflow: scroll;
+  overflow-x: hidden;
+  overflow-wrap: break-word;
+
+  height: 100%;
+  width: 100%;
+  background: #fff;
+
+  padding: var(--padding-2);
+  box-sizing: border-box;
+
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--shadow-length)
+    inset;
+
+  scrollbar-color: #7e7e7e transparent;
+  scrollbar-width: thin;
+  scrollbar-thumb: auto;
+
+  font-family: "Courier New";
+
+  transition: box-shadow 0.25s ease-in-out;
+
+  &:focus {
+    outline: none;
+    box-shadow: var(--shadow-offset) var(--shadow-offset) var(--shadow-length)
+        inset,
+      0 0 2px 2px inset black;
+  }
+}
+
+.read-only {
+  color: #000;
+  font-family: "Courier New";
+
+  background: transparent;
+  box-shadow: none;
+
+  height: calc(100% - 30px - 20%);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body {
+  background: grey;
+  margin: 50px;
+  display: flex;
+  gap: 50px;
+}
+
+button {
+  width: 40%;
+
+  background: #bebebe;
+  box-shadow: var(--box-shadow-fancy);
+  font-family: "Courier New";
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.buttonWrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  bottom: 30px;
+  width: 90%;
+  height: 20%;
+}
+
+input[type="radio"] {
+  --width: 1em;
+  appearance: none;
+  background-color: transparent;
+  margin: 0;
+  font: inherit;
+  /*   color: currentColor; */
+  width: var(--width);
+  aspect-ratio: 1/1;
+  box-sizing: border-box;
+  /*   border: 0.15em solid currentColor; */
+  /*     clip-path:circle(); */
+  border-radius: 50%;
+  margin: -0.25em 0;
+  box-shadow: 0 0 0 0.15em inset;
+  /*   box-shadow: var */
+  /*   box-shadow: 0 0 inset #fff, -2px -2px inset; */
+
+  &:after {
+    --scale-down: 2;
+    --after-width: calc(var(--width) / var(--scale-down));
+
+    content: "";
+    position: absolute;
+    width: var(--after-width);
+    margin: 0;
+    margin-left: calc(
+      (var(--width) / var(--scale-down)) - var(--after-width) / 2
+    );
+    margin-top: calc(
+      (var(--width) / var(--scale-down)) - var(--after-width) / 2
+    );
+
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    background: white;
+
+    scale: 0;
+    transition: scale 0.125s ease-in;
+  }
+
+  &:focus:after {
+    scale: 1;
+    /*     background-color: white; */
+  }
+}
+
+label {
+  font-family: "Courier New";
+  font-weight: bold;
+}
+
+</style>
+<div id="a">
+  <div id="a-top">
+    <div class="window-title"> Input window </div>
+    <div class="icon"> — </div>
+    <div class="icon"> ☐ </div>
+    <div class="icon"> ☒ </div>
+  </div>
+  <div class="b" contenteditable=true>
+    asdasd
+  </div>
+</div>
+
+<div id="a">
+  <div id="a-top">
+    <div class="window-title"> Error </div>
+    <div class="icon"> ☒ </div>
+  </div>
+  <div class="b read-only">
+    asdasd
+  </div>
+</div>
+
+<div id="a">
+  <div id="a-top">
+    <div class="window-title"> Error </div>
+    <div class="icon"> ☒ </div>
+  </div>
+
+  <div class="read-only">
+    asdasd
+  </div>
+  <div class="buttonWrapper">
+    <button> Ok </button>
+    <button> Cancel </button>
+  </div>
+</div>
+
+<div id="a">
+  <div id="a-top">
+    <div class="window-title"> Error </div>
+    <div class="icon"> ☒ </div>
+  </div>
+
+  <form>
+    <input type="radio" id="html" name="fav_language" value="HTML">
+    <label for="html">HTML</label><br>
+    <input type="radio" id="css" name="fav_language" value="CSS">
+    <label for="css">CSS</label><br>
+    <input type="radio" id="javascript" name="fav_language" value="JavaScript">
+    <label for="javascript">JavaScript</label>
+  </form>
+
+</div>

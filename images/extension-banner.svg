@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 150" width="100%" height="auto" style="display: block; border: 3px outset #c0c0c0; background: #000040; font-family: 'MS Sans Serif', Tahoma, Arial, sans-serif; user-select: none;">
+  <defs>
+    <!-- Background Starfield & Grid Pattern -->
+    <linearGradient id="bannerBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#000033" />
+      <stop offset="35%" stop-color="#000066" />
+      <stop offset="70%" stop-color="#001f7a" />
+      <stop offset="100%" stop-color="#000022" />
+    </linearGradient>
+
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffaa" />
+      <stop offset="45%" stop-color="#ffcc00" />
+      <stop offset="75%" stop-color="#ff9900" />
+      <stop offset="100%" stop-color="#ff6600" />
+    </linearGradient>
+
+    <linearGradient id="titleBarGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#000080" />
+      <stop offset="100%" stop-color="#1084d0" />
+    </linearGradient>
+
+    <linearGradient id="neonGreen" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00ff66" />
+      <stop offset="100%" stop-color="#00ffcc" />
+    </linearGradient>
+
+    <!-- Scanline Pattern -->
+    <pattern id="scanlines" width="100" height="4" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="100" y2="0" stroke="rgba(0,0,0,0.3)" stroke-width="2" />
+    </pattern>
+
+    <!-- Cyber Grid -->
+    <pattern id="cyberGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(0, 200, 255, 0.15)" stroke-width="1" />
+    </pattern>
+  </defs>
+
+  <!-- Background Base -->
+  <rect x="0" y="0" width="720" height="150" fill="url(#bannerBg)" />
+  <rect x="0" y="0" width="720" height="150" fill="url(#cyberGrid)" />
+  <rect x="0" y="0" width="720" height="150" fill="url(#scanlines)" />
+
+  <!-- Outer Neon Bevel Border -->
+  <rect x="3" y="3" width="714" height="144" fill="none" stroke="#ffff00" stroke-width="2" stroke-dasharray="8,4" />
+
+  <!-- Left Mini Windows 98 Window -->
+  <g transform="translate(14, 15)">
+    <!-- Shadow -->
+    <rect x="4" y="4" width="124" height="116" fill="#000000" opacity="0.6" />
+    <!-- Window Body -->
+    <rect x="0" y="0" width="124" height="116" fill="#c0c0c0" stroke="#dfdfdf" stroke-width="2" />
+    <path d="M 124 0 L 124 116 L 0 116" fill="none" stroke="#404040" stroke-width="2" />
+    <!-- Window Title Bar -->
+    <rect x="3" y="3" width="118" height="18" fill="url(#titleBarGrad)" />
+    <text x="7" y="16" fill="#ffffff" font-size="10" font-weight="bold">popup.exe</text>
+    <!-- Close Button -->
+    <rect x="107" y="5" width="12" height="12" fill="#c0c0c0" stroke="#ffffff" stroke-width="1" />
+    <text x="110" y="14" fill="#000000" font-size="9" font-weight="bold">×</text>
+    <!-- Window Inner Content -->
+    <rect x="5" y="24" width="114" height="86" fill="#ffffff" stroke="#808080" stroke-width="1" />
+    <!-- Warning Icon -->
+    <polygon points="20,40 10,60 30,60" fill="#ffff00" stroke="#000" stroke-width="1.5" />
+    <text x="18" y="57" font-size="12" font-weight="bold" fill="#000">!</text>
+    <text x="36" y="44" font-size="9" font-weight="bold" fill="#cc0000">CONGRATS!!</text>
+    <text x="36" y="56" font-size="8" fill="#000080">You are visitor</text>
+    <text x="36" y="67" font-size="9" font-weight="bold" fill="#008000">#1,000,000!</text>
+    <!-- Flashing Fake Buttons inside mini window -->
+    <rect x="10" y="76" width="48" height="16" fill="#c0c0c0" stroke="#fff" stroke-width="1" />
+    <text x="16" y="88" font-size="8" font-weight="bold" fill="#000">CLAIM</text>
+    <rect x="64" y="76" width="48" height="16" fill="#c0c0c0" stroke="#fff" stroke-width="1" />
+    <text x="72" y="88" font-size="8" fill="#666">Cancel</text>
+    <text x="10" y="104" font-size="7" fill="#ff0000" font-weight="bold">★ BUTTON MOVES! ★</text>
+  </g>
+
+  <!-- Center Content Area -->
+  <!-- Top Flashing Badge -->
+  <g transform="translate(155, 14)">
+    <rect x="0" y="0" width="370" height="22" fill="#ff0000" rx="3" stroke="#ffff00" stroke-width="1.5" />
+    <text x="185" y="15" text-anchor="middle" font-size="11" font-weight="900" fill="#ffffff" letter-spacing="1">
+      ★ NEW! SPONSOR YOUR OWN WEBPAGE CHAOS ★
+    </text>
+  </g>
+
+  <!-- Main Headline 3D Style -->
+  <!-- Headline Shadow -->
+  <text x="156" y="64" font-size="28" font-weight="900" fill="#000000" font-family="'Impact', 'Arial Black', sans-serif" letter-spacing="1.5">
+    RETROPOP 98 EXTENSION
+  </text>
+  <!-- Headline Glow / Stroke -->
+  <text x="155" y="62" font-size="28" font-weight="900" fill="#000000" stroke="#ff0000" stroke-width="3" font-family="'Impact', 'Arial Black', sans-serif" letter-spacing="1.5">
+    RETROPOP 98 EXTENSION
+  </text>
+  <!-- Headline Front -->
+  <text x="155" y="62" font-size="28" font-weight="900" fill="url(#goldGrad)" font-family="'Impact', 'Arial Black', sans-serif" letter-spacing="1.5">
+    RETROPOP 98 EXTENSION
+  </text>
+
+  <!-- Subheadline -->
+  <text x="156" y="86" font-size="13" font-weight="bold" fill="url(#neonGreen)" letter-spacing="0.5">
+    ⚡ Injects Authentic 1998 Windows Popups on ANY Webpage!
+  </text>
+  <text x="156" y="104" font-size="11" fill="#e0e0ff">
+    Prank yourself or friends on <tspan fill="#ffffaa" font-weight="bold">Google, Wikipedia, YouTube, Reddit &amp; more</tspan>!
+  </text>
+  <text x="156" y="122" font-size="10" fill="#00ffff" font-weight="bold">
+    ✔ Evasive Moving Buttons &nbsp;✔ Casino Jackpots &nbsp;✔ Biohazard Sirens &nbsp;✔ 100% Harmless
+  </text>
+  <text x="156" y="137" font-size="9" fill="#aaaaaa">
+    Runs locally in Manifest V3 Shadow DOM • Zero trackers • Pure 90s nostalgia
+  </text>
+
+  <!-- Right Side Big 3D Download Button -->
+  <g transform="translate(540, 20)">
+    <!-- Glow Backdrop -->
+    <rect x="-4" y="-4" width="168" height="114" fill="#ffff00" opacity="0.25" rx="6" />
+    <!-- Button Exterior Box -->
+    <rect x="0" y="0" width="160" height="106" fill="#008000" stroke="#00ff00" stroke-width="2" rx="4" />
+    <rect x="2" y="2" width="156" height="50" fill="url(#goldGrad)" />
+    <!-- Floppy Disk & Download Icon -->
+    <g transform="translate(12, 10)">
+      <!-- Floppy Icon -->
+      <rect x="0" y="0" width="24" height="24" fill="#000080" stroke="#ffffff" stroke-width="1.5" />
+      <rect x="4" y="2" width="16" height="10" fill="#ffffff" />
+      <rect x="6" y="14" width="12" height="8" fill="#808080" />
+    </g>
+    <!-- Button Main Text -->
+    <text x="44" y="22" font-size="14" font-weight="900" fill="#000000">DOWNLOAD</text>
+    <text x="44" y="38" font-size="16" font-weight="900" fill="#cc0000">EXTENSION</text>
+
+    <!-- Lower Half with ZIP format -->
+    <rect x="0" y="52" width="160" height="54" fill="#004d00" />
+    <text x="80" y="72" text-anchor="middle" font-size="11" font-weight="bold" fill="#ffffff">
+      💾 retropop98.zip
+    </text>
+    <text x="80" y="88" text-anchor="middle" font-size="9" font-weight="bold" fill="#ffff00">
+      Chrome / Brave / Edge
+    </text>
+    <text x="80" y="100" text-anchor="middle" font-size="8" fill="#aaffaa">
+      Manifest V3 • 100% Free
+    </text>
+  </g>
+</svg>

@@ -1,0 +1,51 @@
+body {
+  margin: 0;
+  width: 250px;
+  background: #c0c0c0;
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  padding: 3px;
+  box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #dfdfdf;
+}
+.win-header {
+  background: linear-gradient(90deg, #000080, #1084d0);
+  color: white;
+  padding: 3px 6px;
+  font-weight: bold;
+}
+.win-body {
+  padding: 8px;
+}
+.status-box {
+  background: #fff;
+  border: 1px inset #777;
+  padding: 4px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+.main-btn {
+  width: 100%;
+  padding: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+.options {
+  margin-bottom: 8px;
+}
+.actions {
+  display: flex;
+  gap: 4px;
+}
+.actions button {
+  flex: 1;
+  padding: 4px 2px;
+  cursor: pointer;
+  font-size: 10px;
+}
+.footer-note {
+  margin-top: 8px;
+  font-size: 9px;
+  text-align: center;
+  color: #444;
+}

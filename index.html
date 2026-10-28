@@ -397,6 +397,184 @@
       50%, 100% { opacity: 0; }
     }
 
+    
+    /* ========================================================
+       FLASHING POPUP ANIMATIONS & CHROME EXTENSION BANNER
+       ======================================================== */
+    .flash-casino {
+      animation: popIn 0.18s cubic-bezier(0.18, 0.89, 0.32, 1.28), flashBorderCasino 0.3s infinite alternate !important;
+      border: 3px solid #ff0000 !important;
+    }
+    @keyframes flashBorderCasino {
+      0% { box-shadow: 0 0 18px #ff0000, inset 0 0 10px #ff0000; border-color: #ff0000; }
+      50% { box-shadow: 0 0 24px #ffff00, inset 0 0 14px #ffff00; border-color: #ffff00; }
+      100% { box-shadow: 0 0 18px #00ff00, inset 0 0 10px #00ff00; border-color: #00ff00; }
+    }
+
+    .flash-hazard {
+      animation: popIn 0.18s cubic-bezier(0.18, 0.89, 0.32, 1.28), flashBorderHazard 0.25s infinite alternate !important;
+      border: 3px solid #ff0000 !important;
+    }
+    @keyframes flashBorderHazard {
+      0% { box-shadow: 0 0 20px #ff0000, 0 0 35px #ff5500; border-color: #ff0000; background: #ffffaa; }
+      100% { box-shadow: 0 0 20px #ffff00, 0 0 35px #ffff55; border-color: #ffff00; background: #ffaaaa; }
+    }
+
+    .flash-pink {
+      animation: popIn 0.18s cubic-bezier(0.18, 0.89, 0.32, 1.28), flashBorderPink 0.35s infinite alternate !important;
+      border: 3px solid #ff007f !important;
+    }
+    @keyframes flashBorderPink {
+      0% { box-shadow: 0 0 20px #ff007f, inset 0 0 10px #ff007f; border-color: #ff007f; }
+      100% { box-shadow: 0 0 20px #00f0ff, inset 0 0 10px #00f0ff; border-color: #00f0ff; }
+    }
+
+    .flash-rainbow {
+      animation: popIn 0.18s cubic-bezier(0.18, 0.89, 0.32, 1.28), flashBorderRainbow 0.45s infinite linear !important;
+      border: 3px solid red !important;
+    }
+    @keyframes flashBorderRainbow {
+      0% { border-color: #ff0000; box-shadow: 0 0 18px #ff0000; }
+      20% { border-color: #ff8800; box-shadow: 0 0 18px #ff8800; }
+      40% { border-color: #ffff00; box-shadow: 0 0 18px #ffff00; }
+      60% { border-color: #00ff00; box-shadow: 0 0 18px #00ff00; }
+      80% { border-color: #0088ff; box-shadow: 0 0 18px #0088ff; }
+      100% { border-color: #ff00ff; box-shadow: 0 0 18px #ff00ff; }
+    }
+
+    .flash-matrix {
+      animation: popIn 0.18s cubic-bezier(0.18, 0.89, 0.32, 1.28), flashBorderMatrix 0.3s infinite alternate !important;
+      border: 3px solid #00ff41 !important;
+    }
+    @keyframes flashBorderMatrix {
+      0% { border-color: #00ff41; box-shadow: 0 0 16px #00ff41, inset 0 0 10px #003b00; }
+      100% { border-color: #ffffff; box-shadow: 0 0 24px #00ff41, inset 0 0 16px #008f11; }
+    }
+
+    .title-bar-flash-rainbow {
+      animation: flashTitleRainbow 0.4s infinite linear !important;
+    }
+    @keyframes flashTitleRainbow {
+      0% { background: linear-gradient(90deg, #ff0000, #ff8800) !important; color: #fff !important; }
+      33% { background: linear-gradient(90deg, #ffff00, #00bb00) !important; color: #000 !important; }
+      66% { background: linear-gradient(90deg, #0088ff, #ff00ff) !important; color: #fff !important; }
+      100% { background: linear-gradient(90deg, #ff0000, #ff8800) !important; color: #fff !important; }
+    }
+
+    .title-bar-flash-red {
+      animation: flashTitleRed 0.28s infinite alternate !important;
+    }
+    @keyframes flashTitleRed {
+      0% { background: linear-gradient(90deg, #ff0000, #800000) !important; color: #fff !important; }
+      100% { background: linear-gradient(90deg, #ffff00, #ff5500) !important; color: #000 !important; }
+    }
+
+    .flash-nuclear {
+      animation: popIn 0.18s cubic-bezier(0.18, 0.89, 0.32, 1.28), flashBorderNuclear 0.22s infinite alternate !important;
+      border: 3px solid #ffcc00 !important;
+    }
+    @keyframes flashBorderNuclear {
+      0% { box-shadow: 0 0 25px #ffcc00, 0 0 45px #ff3300; border-color: #ffff00; background: #fffbe6; }
+      100% { box-shadow: 0 0 35px #ff0000, 0 0 60px #ffcc00; border-color: #ff3300; background: #ffe6e6; }
+    }
+
+    .flash-electric {
+      animation: popIn 0.18s cubic-bezier(0.18, 0.89, 0.32, 1.28), flashBorderElectric 0.3s infinite alternate !important;
+      border: 3px solid #a855f7 !important;
+    }
+    @keyframes flashBorderElectric {
+      0% { box-shadow: 0 0 20px #a855f7, inset 0 0 10px #7c3aed; border-color: #c084fc; }
+      100% { box-shadow: 0 0 25px #06b6d4, inset 0 0 15px #3b82f6; border-color: #38bdf8; }
+    }
+
+    .flash-trojan {
+      animation: popIn 0.18s cubic-bezier(0.18, 0.89, 0.32, 1.28), flashBorderTrojan 0.2s infinite alternate !important;
+      border: 3px solid #dc2626 !important;
+    }
+    @keyframes flashBorderTrojan {
+      0% { box-shadow: 0 0 20px #dc2626; border-color: #ef4444; background: #fee2e2; }
+      100% { box-shadow: 0 0 30px #f59e0b; border-color: #f59e0b; background: #fef3c7; }
+    }
+
+    .title-bar-flash-nuclear {
+      animation: flashTitleNuclear 0.25s infinite alternate !important;
+    }
+    @keyframes flashTitleNuclear {
+      0% { background: linear-gradient(90deg, #ff0000, #ffbb00) !important; color: #000 !important; font-weight: 900 !important; }
+      100% { background: linear-gradient(90deg, #ffbb00, #ff0000) !important; color: #fff !important; font-weight: 900 !important; }
+    }
+
+    /* Chrome Extension Download Banner */
+    .ext-download-banner {
+      background: linear-gradient(135deg, #000030 0%, #000080 35%, #1084d0 70%, #000030 100%);
+      border: 3px outset #ffff00;
+      box-shadow: 0 0 14px rgba(255, 255, 0, 0.5), inset 0 0 10px rgba(0,0,0,0.7);
+      padding: 10px 14px;
+      margin: 12px 0 16px 0;
+      color: #ffffff;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ext-download-banner::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent 45%, rgba(255,255,255,0.18) 50%, transparent 55%);
+      animation: bannerShine 2.8s infinite linear;
+      pointer-events: none;
+    }
+
+    @keyframes bannerShine {
+      0% { transform: translateY(-100%) rotate(25deg); }
+      100% { transform: translateY(100%) rotate(25deg); }
+    }
+
+    .ext-banner-title {
+      font-size: 15px;
+      font-weight: bold;
+      color: #ffff00;
+      text-shadow: 2px 2px 0 #ff0000, 3px 3px 4px #000;
+      margin-bottom: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .ext-banner-sub {
+      font-size: 11px;
+      color: #e0f0ff;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+
+    .ext-download-btn {
+      display: inline-block;
+      background: linear-gradient(180deg, #ffdd00 0%, #ff8800 100%);
+      color: #000080;
+      font-weight: bold;
+      font-size: 13px;
+      padding: 8px 18px;
+      text-decoration: none;
+      border: 3px outset #ffffff;
+      box-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+      cursor: pointer;
+      animation: pulseBtn 1s infinite alternate;
+      letter-spacing: 0.5px;
+    }
+
+    .ext-download-btn:hover {
+      filter: brightness(1.15);
+      border-style: inset;
+    }
+
+    @keyframes pulseBtn {
+      from { transform: scale(1); }
+      to { transform: scale(1.04); }
+    }
+
     /* Evasive Button that escapes mouse */
     .evasive-target {
       transition: transform 0.15s ease-out;
@@ -1054,6 +1232,14 @@
       <div class="icon-img">💣</div>
       <div class="icon-label">SPAM CHAOS!</div>
     </div>
+        <div class="desktop-icon" onclick="downloadExtensionZip()">
+      <div class="icon-img">🔌</div>
+      <div class="icon-label">Extension.zip</div>
+    </div>
+    <div class="desktop-icon" onclick="spawnFlashingOverload()">
+      <div class="icon-img">⚡</div>
+      <div class="icon-label">Flash Popups!</div>
+    </div>
     <div class="desktop-icon" onclick="openOrFocus('readme-window')">
       <div class="icon-img">📝</div>
       <div class="icon-label">README.TXT</div>
@@ -1104,6 +1290,24 @@
       <marquee class="retro-marquee" behavior="scroll" direction="left" scrollamount="6">
         ★★★ WELCOME TO PANNY'S RETRO CYBER PALACE ★★★ BEST VIEWED AT 800x600 IN 16-BIT COLOR WITH 56K MODEM ★★★ POPUPS ARE LIVE AND CLOSING RANDOMLY! ★★★
       </marquee>
+      <!-- RETROPOP 98 CHROME EXTENSION DOWNLOAD BANNER -->
+      <div class="ext-download-banner">
+        <a href="./retropop98-extension.zip" download="retropop98-extension.zip" title="Click to Download RetroPop 98 Extension (.ZIP)" style="display: block; text-decoration: none;">
+          <img src="./images/extension-banner.svg" alt="RetroPop 98 Chrome Extension Banner - Spawn Popups on Any Webpage" style="width: 100%; max-width: 720px; height: auto; border: 2px solid #ffff00; box-shadow: 0 0 16px rgba(255, 255, 0, 0.6); display: block; margin: 0 auto; transition: transform 0.15s ease-in-out;" onmouseover="this.style.transform='scale(1.01)'" onmouseout="this.style.transform='scale(1)'">
+        </a>
+        <div style="display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
+          <a href="./retropop98-extension.zip" download="retropop98-extension.zip" class="ext-download-btn">
+            💾 DIRECT DOWNLOAD EXTENSION (.ZIP)
+          </a>
+          <button onclick="showInstallHelp()" style="font-size: 11px; padding: 6px 14px; cursor: pointer; font-weight: bold; background: #c0c0c0; border: 2px outset #fff;">
+            📖 How to Install (3 Steps)
+          </button>
+          <button onclick="spawnFlashingOverload()" style="font-size: 11px; padding: 6px 14px; cursor: pointer; font-weight: bold; background: linear-gradient(90deg, #ff0000, #ff8800); color: #fff; border: 2px outset #ffff00;">
+            ⚡ Trigger All Flashing Popups!
+          </button>
+        </div>
+      </div>
+
 
       <div style="text-align: center; margin-bottom: 12px;">
         <h2 style="margin: 4px 0; color: #000080; font-family: 'Times New Roman', serif;">★ The Ultimate 3D Rotating Browser Badge ★</h2>
@@ -1198,8 +1402,19 @@
           Featuring classic 90s Internet Explorer popups and Tomas Petricek's notorious <em>"Popup from Hell"</em> Hydra effect (closing 1 spawns 2)!
         </p>
 
-        <div class="chaos-buttons">
+                <div class="chaos-buttons">
           <button class="default" onclick="spawnWinnerBigPopup()">🏆 $1,000,000 Winner Poster!</button>
+          <button style="background: #2a0000; color: #ffff00; font-weight: bold; border: 2px dashed #ffff00;" onclick="spawnFlashingCasino()">🎰 Flashing 777 Casino</button>
+          <button style="background: #3a0000; color: #ff3333; font-weight: bold; border: 2px solid #ff0000;" onclick="spawnFlashingBiohazard()">🚨 Flashing Emergency</button>
+          <button style="background: #2a002a; color: #ff66cc; font-weight: bold; border: 2px solid #ff00ff;" onclick="spawnFlashingSingles()">💖 Flashing Singles</button>
+          <button style="background: #1a0033; color: #00ffcc; font-weight: bold; border: 2px solid #00ffff;" onclick="spawnFlashingChainLetter()">👻 Flashing Chain Letter</button>
+          <button style="background: #002a11; color: #00ff66; font-weight: bold; border: 2px solid #00ff00;" onclick="spawnFlashingPrize()">🎁 Flashing Free MP3</button>
+          <button style="background: #000; color: #00ff41; font-weight: bold; border: 2px solid #00ff41;" onclick="spawnFlashingMatrix()">👁️ Flashing Matrix</button>
+          <button style="background: #3b1400; color: #ffbb00; font-weight: bold; border: 2px solid #ffaa00;" onclick="spawnFlashingNuclear()">☢️ Flashing Nuclear Melt</button>
+          <button style="background: #001f3f; color: #7fdbff; font-weight: bold; border: 2px solid #0074d9;" onclick="spawnFlashingDialUpLottery()">💿 Flashing 5,000 AOL CDs</button>
+          <button style="background: #2e0854; color: #e0aaff; font-weight: bold; border: 2px solid #c77dff;" onclick="spawnFlashingBabyDancing()">👶 Flashing Dancing Baby</button>
+          <button style="background: #4a0000; color: #ff6b6b; font-weight: bold; border: 2px solid #e63946;" onclick="spawnFlashingSubSeven()">⚠️ Flashing SubSeven</button>
+          <button style="background: linear-gradient(90deg, #ff0000, #ff8800, #00bb00, #0088ff); color: #fff; font-weight: bold;" onclick="spawnFlashingOverload()">⚡ ALL FLASHING POPUPS!</button>
           <button class="default" onclick="spawnLotteryPopup()">🎰 Spawn Lottery Winner!</button>
           <button class="default" onclick="spawnGatewayAd()">🎁 Free Gateway PC Ad</button>
           <button style="background: #200000; color: #ff5555; font-weight: bold;" onclick="spawnHellPopup()">🔥 "Popup from Hell" (Hydra x2)</button>
@@ -1213,6 +1428,7 @@
           <button onclick="playModemDialUpHandshake()">📞 Dial-Up Handshake</button>
           <button onclick="spawnDownloadRam()">💾 Download More RAM</button>
           <button onclick="spawnIllegalOperation()">❌ Illegal Operation</button>
+          <button onclick="downloadExtensionZip()" style="background: #000080; color: #ffff00; font-weight: bold;">🔌 Download Extension (.ZIP)</button>
           <button onclick="spawnChaosFrenzy()" style="color: red; font-weight: bold;">💣 BOMBARDMENT (5 Popups)</button>
           <button onclick="toggleAutoSpawning()" id="toggle-spawning-btn">⏸ Pause Auto-Popups</button>
           <button onclick="exorciseHellPopups()">✝️ Exorcise Hell Popups</button>
@@ -1526,6 +1742,12 @@ Try it live on this page using the "Popup from Hell" button!
         <span>📝</span> <strong>Popup From Hell Code</strong>
       </div>
       <div class="start-divider"></div>
+            <div class="start-item" onclick="downloadExtensionZip(); toggleStartMenu();">
+        <span>🔌</span> <strong>Download Chrome Extension</strong>
+      </div>
+      <div class="start-item" onclick="spawnFlashingOverload(); toggleStartMenu();">
+        <span>⚡</span> <strong>Flashing Popups Overload!</strong>
+      </div>
       <div class="start-item" onclick="spawnWinnerBigPopup(); toggleStartMenu();">
         <span>🏆</span> <strong>$1,000,000 Winner Notice</strong>
       </div>
@@ -1742,6 +1964,28 @@ Try it live on this page using the "Popup from Hell" button!
           gain.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
           osc.start(now);
           osc.stop(now + 0.5);
+                } else if (type === 'siren') {
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(600, now);
+          osc.frequency.linearRampToValueAtTime(1300, now + 0.18);
+          osc.frequency.linearRampToValueAtTime(600, now + 0.35);
+          gain.gain.setValueAtTime(0.18, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
+          osc.start(now);
+          osc.stop(now + 0.45);
+        } else if (type === 'casino') {
+          [523.25, 659.25, 783.99, 1046.50, 1318.51, 1567.98].forEach((freq, idx) => {
+            const o = ctx.createOscillator();
+            const g = ctx.createGain();
+            o.type = 'square';
+            o.frequency.setValueAtTime(freq, now + idx * 0.05);
+            g.gain.setValueAtTime(0.12, now + idx * 0.05);
+            g.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.05 + 0.12);
+            o.connect(g);
+            g.connect(ctx.destination);
+            o.start(now + idx * 0.05);
+            o.stop(now + idx * 0.05 + 0.12);
+          });
         } else if (type === 'fanfare') {
           // Konami Victory Fanfare
           [523.25, 659.25, 783.99, 1046.50, 1318.51].forEach((freq, idx) => {
@@ -2446,6 +2690,348 @@ Try it live on this page using the "Popup from Hell" button!
       setTimeout(() => triggerBSOD(), 1200);
     }
 
+    
+    /* ========================================================
+       FLASHING POPUP GENERATORS & EXTENSION HELPERS
+       ======================================================== */
+    function downloadExtensionZip() {
+      const a = document.createElement('a');
+      a.href = './retropop98-extension.zip';
+      a.download = 'retropop98-extension.zip';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      playRetroChime('lottery');
+      alert('💾 RetroPop 98 Chrome Extension downloaded!\n\nUnzip the folder and load in chrome://extensions to spawn popups anywhere on the web!');
+    }
+
+    function showInstallHelp() {
+      playRetroChime('default');
+      alert(
+        '🔌 HOW TO INSTALL RETROPOP 98 IN CHROME (3 STEPS):\n\n' +
+        '1. Download and unzip "retropop98-extension.zip".\n' +
+        '2. Open Google Chrome and navigate to: chrome://extensions\n' +
+        '3. Turn on [Developer mode] in the top-right corner, then click [Load unpacked] and select the unzipped extension folder!\n\n' +
+        'Now navigate to Wikipedia, YouTube, or Google and enjoy authentic 1998 popups!'
+      );
+    }
+
+    function spawnFlashingPopup(config) {
+      playRetroChime(config.sound || 'casino');
+      const popupId = 'flash-popup-' + (++popupIndex);
+      const popupWidth = config.width || 380;
+      const margin = 20;
+      const maxLeft = Math.max(margin, window.innerWidth - popupWidth - margin);
+      const maxTop = Math.max(margin, window.innerHeight - 260 - margin);
+      const left = Math.floor(Math.random() * maxLeft);
+      const top = Math.floor(Math.random() * maxTop);
+
+      const durationMs = 8000;
+
+      const popupEl = document.createElement('div');
+      popupEl.id = popupId;
+      popupEl.className = 'popup-window app-window window ' + (config.flashClass || 'flash-rainbow');
+      popupEl.style.left = left + 'px';
+      popupEl.style.top = top + 'px';
+      popupEl.style.width = popupWidth + 'px';
+      popupEl.style.zIndex = ++highestZ;
+
+      popupEl.innerHTML = `
+        <div class="title-bar ${config.titleFlashClass || 'title-bar-flash-rainbow'}" onmousedown="bringToFront('${popupId}'); startDrag(event, '${popupId}')">
+          <div class="title-bar-text">${config.title}</div>
+          <div class="title-bar-controls">
+            <button aria-label="Close" onclick="closePopup(this)"></button>
+          </div>
+        </div>
+        <div class="window-body" style="padding: 10px; background: ${config.bgColor || '#c0c0c0'};">
+          ${config.content}
+          <div class="popup-timer-bar-wrap" title="Auto-closing">
+            <div class="popup-timer-bar" id="${popupId}-timer"></div>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('popups-container').appendChild(popupEl);
+      activePopups++;
+      updatePopupCount();
+
+      setTimeout(() => {
+        const timerBar = document.getElementById(`${popupId}-timer`);
+        if (timerBar) {
+          timerBar.style.transition = `width ${durationMs}ms linear`;
+          timerBar.style.width = '0%';
+        }
+      }, 50);
+
+      const closeTimer = setTimeout(() => {
+        removePopupElement(popupEl);
+      }, durationMs);
+
+      popupEl.dataset.closeTimer = closeTimer;
+      popupEl.addEventListener('mousedown', () => bringToFront(popupId));
+      return popupEl;
+    }
+
+    function spawnFlashingCasino() {
+      spawnFlashingPopup({
+        title: '🎰 $$$ 777 CASINO JACKPOT - YOU WON! $$$ 🎰',
+        sound: 'casino',
+        flashClass: 'flash-casino',
+        titleFlashClass: 'title-bar-flash-rainbow',
+        bgColor: '#ffffd0',
+        content: `
+          <div style="text-align: center;">
+            <div class="blink-text" style="font-size: 22px; margin: 4px 0; color: #ff0000; letter-spacing: 4px;">
+              🍒 7️⃣ 💎 7️⃣ 🔔 7️⃣ 🍋
+            </div>
+            <h3 style="margin: 4px 0; color: #800000;">CONGRATULATIONS LUCKY SURFER!</h3>
+            <p style="font-size: 11px; margin: 6px 0;">
+              You hit the <strong>TRIPLE 7 JACKPOT</strong>! 1,000,000 Cyber Gold Tokens have been dispatched over your 56k modem!
+            </p>
+            <div style="display: flex; justify-content: center; gap: 8px; margin-top: 10px;">
+              <button class="default" onclick="alert('CLAIMED 1,000,000 CYBER COINS!'); closePopup(this)">💰 COLLECT JACKPOT</button>
+              <button onclick="spawnFlashingCasino(); closePopup(this)">🎰 DOUBLE OR NOTHING!</button>
+            </div>
+          </div>
+        `
+      });
+    }
+
+    function spawnFlashingBiohazard() {
+      spawnFlashingPopup({
+        title: '🚨 CRITICAL ALERT: FLOPPY DRIVE OVERHEATING! 🚨',
+        sound: 'siren',
+        flashClass: 'flash-hazard',
+        titleFlashClass: 'title-bar-flash-red',
+        bgColor: '#ffe0e0',
+        content: `
+          <div>
+            <div class="blink-text" style="color: red; font-size: 13px; font-weight: bold; margin-bottom: 6px;">
+              ⚠️ THERMAL MELTDOWN IN SECTOR C:\ ⚠️
+            </div>
+            <p style="font-size: 11px; margin: 4px 0;">
+              Your 3.5" floppy drive has reached <strong>450°F</strong>! Spinning speed exceeded 12,000 RPM!
+            </p>
+            <p style="font-size: 11px; color: #800000; margin: 4px 0;">
+              Immediate action required: please eject floppy disk and douse in iced beverage!
+            </p>
+            <div style="display: flex; justify-content: flex-end; gap: 6px; margin-top: 10px;">
+              <button class="default" onclick="alert('Ejecting molten floppy disk... PSHHHHH!'); closePopup(this)">🧯 Deploy Extinguisher</button>
+              <button onclick="closePopup(this)">Ignore &amp; Melt</button>
+            </div>
+          </div>
+        `
+      });
+    }
+
+    function spawnFlashingSingles() {
+      spawnFlashingPopup({
+        title: '💖 HOT LOCALHOST SINGLES IN 127.0.0.1! 💖',
+        sound: 'casino',
+        flashClass: 'flash-pink',
+        titleFlashClass: 'title-bar-flash-rainbow',
+        bgColor: '#fff0f8',
+        content: `
+          <div style="text-align: center;">
+            <div class="blink-text" style="color: #ff007f; font-size: 14px; font-weight: bold; margin-bottom: 6px;">
+              💕 4 DAEMONS WAITING ON PORT 8080! 💕
+            </div>
+            <p style="font-size: 11px; margin: 4px 0;">
+              Lonely HTTP sockets want to establish three-way handshakes in your area tonight!
+            </p>
+            <div style="background: yellow; border: 1px dashed red; padding: 4px; font-size: 10px; font-weight: bold; margin: 6px 0;">
+              LATENCY: 0.01ms ★ BANDWIDTH: UNLIMITED ★ SSL: NOT REQUIRED
+            </div>
+            <div style="display: flex; justify-content: center; gap: 8px; margin-top: 8px;">
+              <button class="default" onclick="alert('SYN packet sent! Connection established on socket 8080.'); closePopup(this)">💕 SEND SYN-ACK</button>
+              <button onclick="closePopup(this)">RST Connection</button>
+            </div>
+          </div>
+        `
+      });
+    }
+
+    function spawnFlashingChainLetter() {
+      spawnFlashingPopup({
+        title: '👻 CURSED 1998 CHAIN LETTER! DO NOT CLOSE! 👻',
+        sound: 'siren',
+        flashClass: 'flash-rainbow',
+        titleFlashClass: 'title-bar-flash-red',
+        bgColor: '#f5eaff',
+        content: `
+          <div>
+            <div class="blink-text" style="color: #4b0082; font-size: 12px; font-weight: bold; margin-bottom: 4px;">
+              ⚡ SEND THIS TO 10 ICQ CONTACTS OR BE CURSED! ⚡
+            </div>
+            <p style="font-size: 10px; line-height: 1.4; margin: 4px 0;">
+              In 1998, a boy named Billy closed this popup without sending it. 5 minutes later, his mouse trackball mysteriously rolled under the desk and was lost forever!
+            </p>
+            <div style="display: flex; justify-content: flex-end; gap: 6px; margin-top: 8px;">
+              <button class="default" onclick="alert('Sent to 10 ICQ contacts! Your mouse ball is safe.'); closePopup(this)">✉️ Forward to 10 ICQ Friends</button>
+              <button onclick="closePopup(this)">Accept the Curse</button>
+            </div>
+          </div>
+        `
+      });
+    }
+
+    function spawnFlashingPrize() {
+      spawnFlashingPopup({
+        title: '🎁 CONGRATULATIONS VISITOR #999,999,999! 🎁',
+        sound: 'lottery',
+        flashClass: 'flash-casino',
+        titleFlashClass: 'title-bar-flash-rainbow',
+        bgColor: '#eaffea',
+        content: `
+          <div style="text-align: center;">
+            <div class="blink-text" style="color: #008000; font-size: 14px; font-weight: bold; margin-bottom: 6px;">
+              🎉 YOU ARE OUR FINAL 20th CENTURY VISITOR! 🎉
+            </div>
+            <p style="font-size: 11px; margin: 4px 0;">
+              Claim your <strong>FREE NEON GREEN 256MB MP3 PLAYER</strong> with USB 1.1 sync cable!
+            </p>
+            <div style="display: flex; justify-content: center; gap: 8px; margin-top: 8px;">
+              <button class="default" onclick="alert('Claiming 256MB MP3 Player! Holds up to 60 songs.'); closePopup(this)">🎵 CLAIM MP3 PLAYER</button>
+              <button onclick="closePopup(this)">Keep My Discman</button>
+            </div>
+          </div>
+        `
+      });
+    }
+
+    function spawnFlashingMatrix() {
+      spawnFlashingPopup({
+        title: '👁️ MATRIX ANOMALY: SYSTEM HOST DETECTED 👁️',
+        sound: 'siren',
+        flashClass: 'flash-matrix',
+        titleFlashClass: 'title-bar-flash-rainbow',
+        bgColor: '#001a05',
+        content: `
+          <div style="color: #00ff41; font-family: monospace;">
+            <p style="margin: 0 0 6px 0; font-size: 12px; font-weight: bold;">
+              Knock knock, Neo.
+            </p>
+            <p style="font-size: 11px; margin: 4px 0; color: #aaffaa;">
+              The agents have detected your 56k dial-up connection on port 23 (Telnet).
+            </p>
+            <div style="display: flex; justify-content: flex-end; gap: 6px; margin-top: 10px;">
+              <button onclick="toggleMatrixMode(); closePopup(this)" style="background: #004411; color: #00ff41; border: 1px solid #00ff41;">🔴 Red Pill (Matrix Rain)</button>
+              <button onclick="closePopup(this)" style="background: #001144; color: #aaccff; border: 1px solid #0088ff;">🔵 Blue Pill (Normalcy)</button>
+            </div>
+          </div>
+        `
+      });
+    }
+
+    function spawnFlashingNuclear() {
+      spawnFlashingPopup({
+        title: '☢️ DEFCON 1: CHERNOBYL CORE MELTDOWN IMMINENT ☢️',
+        sound: 'siren',
+        flashClass: 'flash-nuclear',
+        titleFlashClass: 'title-bar-flash-nuclear',
+        bgColor: '#fff5d6',
+        content: `
+          <div style="text-align: center;">
+            <div class="blink-text" style="color: #d90429; font-size: 14px; font-weight: bold; margin-bottom: 6px;">
+              ☢️ CPU HEAT SINK EXCEEDED 9,000°C! ☢️
+            </div>
+            <p style="font-size: 11px; margin: 4px 0; color: #2b2d42;">
+              Dial-up packets are overloading reactor cooling rod #4! Emergency purge required before CRT phosphorus implodes!
+            </p>
+            <div style="display: flex; justify-content: center; gap: 8px; margin-top: 10px;">
+              <button class="default" onclick="alert('Coolant injected! Core temperature stabilized at 8,999°C.'); closePopup(this)">🧯 FLUSH DIAL-UP COOLANT</button>
+              <button onclick="alert('CRT Monitor safely ejected through window.'); closePopup(this)">Eject CRT Monitor</button>
+            </div>
+          </div>
+        `
+      });
+    }
+
+    function spawnFlashingDialUpLottery() {
+      spawnFlashingPopup({
+        title: '💿 YOU WON 5,000 HOURS OF AOL TRIAL CD-ROMS! 💿',
+        sound: 'lottery',
+        flashClass: 'flash-rainbow',
+        titleFlashClass: 'title-bar-flash-rainbow',
+        bgColor: '#eff6ff',
+        content: `
+          <div style="text-align: center;">
+            <div class="blink-text" style="color: #0044ff; font-size: 13px; font-weight: bold; margin-bottom: 4px;">
+              🎉 250 TIN CD-ROM CASES INCOMING! 🎉
+            </div>
+            <p style="font-size: 11px; margin: 4px 0;">
+              America Online 4.0 is shipping a pallet of 5,000 Free Trial CDs to your physical driveway! Perfect as drink coasters, Frisbees, or solar reflectors!
+            </p>
+            <div style="display: flex; justify-content: center; gap: 8px; margin-top: 10px;">
+              <button class="default" onclick="alert('Dispatched via US Mail! Expected arrival: 1999.'); closePopup(this)">📬 ACCEPT 5,000 AOL CDs</button>
+              <button onclick="closePopup(this)">I Prefer CompuServe</button>
+            </div>
+          </div>
+        `
+      });
+    }
+
+    function spawnFlashingBabyDancing() {
+      spawnFlashingPopup({
+        title: '👶 THE ORIGINAL 1996 3D DANCING BABY HAS ENTERED! 👶',
+        sound: 'casino',
+        flashClass: 'flash-electric',
+        titleFlashClass: 'title-bar-flash-rainbow',
+        bgColor: '#faf5ff',
+        content: `
+          <div style="text-align: center;">
+            <div class="blink-text" style="color: #7e22ce; font-size: 14px; font-weight: bold; margin-bottom: 6px;">
+              🎵 OOGA-CHAKA OOGA-OOGA OOGA-CHAKA! 🎵
+            </div>
+            <p style="font-size: 11px; margin: 4px 0; color: #3b0764;">
+              The uncanny valley 3D Studio MAX rendering is hypnotizing your desktop! You cannot stop the groove!
+            </p>
+            <div style="display: flex; justify-content: center; gap: 8px; margin-top: 10px;">
+              <button class="default" onclick="alert('Dancing along with baby! Cha-cha-cha!'); closePopup(this)">🕺 DANCE ALONG (CANNOT STOP)</button>
+              <button onclick="closePopup(this)">Try to Look Away</button>
+            </div>
+          </div>
+        `
+      });
+    }
+
+    function spawnFlashingSubSeven() {
+      spawnFlashingPopup({
+        title: '⚠️ SUBSEVEN TROJAN DETECTED ON PORT 31337! ⚠️',
+        sound: 'siren',
+        flashClass: 'flash-trojan',
+        titleFlashClass: 'title-bar-flash-red',
+        bgColor: '#fff1f2',
+        content: `
+          <div>
+            <div class="blink-text" style="color: #b91c1c; font-size: 12px; font-weight: bold; margin-bottom: 4px;">
+              🚨 INCOMING TELNET ATTACK FROM 127.0.0.1! 🚨
+            </div>
+            <p style="font-size: 11px; line-height: 1.4; margin: 4px 0;">
+              Remote hacker has inverted your screen colors and opened your physical CD-ROM drive! Send a Ping of Death to neutralize attacker?
+            </p>
+            <div style="display: flex; justify-content: flex-end; gap: 6px; margin-top: 10px;">
+              <button class="default" onclick="alert('65,535-byte ICMP packet transmitted! Hacker modem disconnected.'); closePopup(this)">💥 SEND PING OF DEATH</button>
+              <button onclick="closePopup(this)">Close CD Tray Manually</button>
+            </div>
+          </div>
+        `
+      });
+    }
+
+    function spawnFlashingOverload() {
+      spawnFlashingCasino();
+      setTimeout(spawnFlashingBiohazard, 200);
+      setTimeout(spawnFlashingSingles, 400);
+      setTimeout(spawnFlashingChainLetter, 600);
+      setTimeout(spawnFlashingPrize, 800);
+      setTimeout(spawnFlashingMatrix, 1000);
+      setTimeout(spawnFlashingNuclear, 1200);
+      setTimeout(spawnFlashingDialUpLottery, 1400);
+      setTimeout(spawnFlashingBabyDancing, 1600);
+      setTimeout(spawnFlashingSubSeven, 1800);
+    }
+
     function spawnChaosFrenzy() {
       for (let i = 0; i < 5; i++) {
         setTimeout(() => spawnPopup(), i * 300);
@@ -2453,14 +3039,29 @@ Try it live on this page using the "Popup from Hell" button!
     }
 
     function spawnRandomPopup() {
-      const r = Math.random();
-      if (r < 0.25) {
-        spawnHellPopup();
-      } else if (r < 0.45) {
-        spawnWinnerBigPopup();
-      } else {
-        spawnPopup();
-      }
+      const popups = [
+        spawnWinnerBigPopup,
+        spawnFlashingCasino,
+        spawnFlashingBiohazard,
+        spawnFlashingSingles,
+        spawnFlashingChainLetter,
+        spawnFlashingPrize,
+        spawnFlashingMatrix,
+        spawnFlashingNuclear,
+        spawnFlashingDialUpLottery,
+        spawnFlashingBabyDancing,
+        spawnFlashingSubSeven,
+        spawnHellPopup,
+        spawnLotteryPopup,
+        spawnGatewayAd,
+        spawnEvasivePopup,
+        spawnKazaaPopup,
+        spawnY2KPopup,
+        spawnAOLCDsPopup,
+        spawnPopup
+      ];
+      const fn = popups[Math.floor(Math.random() * popups.length)];
+      fn();
     }
 
     // Auto-spawning Loop

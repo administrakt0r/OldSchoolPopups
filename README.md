@@ -21,6 +21,9 @@
 ### 🖥️ Windows 98 Cyberspace Desktop & Clippy Assistant
 ![Clean Windows 98 Desktop](screenshots/desktop-clean.png)
 
+### 🔌 Chrome Extension Banner & Internet Explorer 4.0
+![Extension Download Banner in IE](screenshots/extension-banner-view.png)
+
 ### 💥 Ad Avalanche, Disk Defragmenter & $1,000,000 Winner Popup
 ![Popup Chaos and Disk Defrag](screenshots/desktop-chaos.png)
 
@@ -43,11 +46,39 @@
 
 ### 💣 The Chaos Popup Engine & Tomas Petricek's Hydra
 - **🔥 Tomas Petricek's "Popup from Hell"**: Based on Tomas Petricek's 2021 programming talk. A notorious JavaScript Hydra: **closing one popup immediately spawns two!** Featuring the infamous `stars.bmp` background and runaway marquee.
+- **⚡ Flashing Neon Popups Collection**:
+  - **🎰 777 Casino Jackpot**: Flashing rainbow/gold border, coin chimes, and double-or-nothing stakes.
+  - **🚨 Chernobyl / Nuclear Core Meltdown**: Emergency siren strobe, cooling rod overload, and CRT monitor eject buttons.
+  - **💖 Hot Single Routers in Your Subnet**: Pink/cyan neon border connecting you with Cisco 2500 routers near `192.168.1.1` with 0.01ms latency.
+  - **👻 Cursed 1998 Chain Letter**: Forward to 10 ICQ contacts or Billy's vanished mouse trackball curse will befall you.
+  - **💿 5,000 Hours of AOL Free Trial CDs**: America Online shipping a pallet of 250 plastic CD cases to use as Frisbees.
+  - **👶 1996 3D Dancing Baby (Oogachaka)**: Uncanny valley 3D Studio MAX groove permanently hypnotizing your screen.
+  - **⚠️ SubSeven / NetBus Trojan**: Remote hacker playing with your CD-ROM tray; retaliate with a 65,535-byte Ping of Death.
+  - **👁️ Matrix Anomaly**: Green phosphor stream with red pill / blue pill choice.
+  - **🎁 Visitor #999,999,999**: Claim your neon green 256MB MP3 player with USB 1.1 sync cable.
 - **🏆 Official $1,000,000 Winner Poster**: High-resolution retro prize notification loaded with shiny trophies and claim buttons.
 - **🎁 Free Gateway 2000 Computer Ad**: Complete with a 19-inch CRT monitor and 48x CD-ROM drive.
 - **💨 Runaway Evasive Decline Button**: An offer you literally cannot decline because the "Decline" button dodges your cursor whenever you try to click it.
 - **🎵 Limewire MP3 Alert**: Downloaded `Britney_Spears_Baby_One_More_Time_REAL_SONG_NO_VIRUS.exe (18.4 KB)`. Why is an MP3 an executable file with a skull icon?
 - **⏳ Y2K Bug Apocalypse Warning**: Protect your microwave and wristwatch from the Year 2000 millennium bug with canned peaches.
+
+---
+
+## 🔌 RetroPop 98 Chrome Extension (Popups on ANY Webpage!)
+
+Want retro 1998 chaos everywhere on the web? Download the companion **RetroPop 98 Chrome Extension** to inject authentic Windows 98 popups, flashing casino jackpots, and evasive buttons on **Google, Wikipedia, YouTube, Reddit, or any site**!
+
+![RetroPop 98 Extension Banner](images/extension-banner.svg)
+
+### 📦 Download & Install:
+1. Download [**`retropop98-extension.zip`**](https://retropop-98.pages.dev/retropop98-extension.zip).
+2. Unzip the file into a folder on your computer.
+3. In Chrome / Brave / Edge, open `chrome://extensions`.
+4. Turn on **Developer mode** (top-right toggle switch).
+5. Click **"Load unpacked"** and select the unzipped folder.
+6. Browse any website and enjoy harmless 1998 cyberspace nostalgia!
+   - Built with **Manifest V3** and strict **Shadow DOM isolation** (never breaks website layouts).
+   - Zero analytics, zero data collection, 100% offline & safe.
 - **💿 AOL 5,000,000 Hours Delivery**: A delivery truck has dumped 4,200 installation CD-ROMs onto your driveway.
 - **🦍 BonziBuddy 4.0**: Your friendly purple gorilla assistant cracking 56k modem jokes.
 

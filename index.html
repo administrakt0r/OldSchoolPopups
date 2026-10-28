@@ -54,24 +54,7 @@
       opacity: 0.85;
     }
 
-    /* Autoplay Prompt Banner (Displays if browser requires user gesture) */
-    #autoplay-banner {
-      position: fixed;
-      top: 8px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #ffff00;
-      color: #000080;
-      border: 2px outset #ff0000;
-      padding: 6px 18px;
-      font-weight: bold;
-      font-size: 12px;
-      box-shadow: 4px 4px 12px rgba(0,0,0,0.6);
-      z-index: 10001;
-      cursor: pointer;
-      display: none;
-      animation: retroPulse 0.9s infinite alternate;
-    }
+
 
     @keyframes retroPulse {
       from { transform: translateX(-50%) scale(0.98); }
@@ -1015,42 +998,7 @@
   <!-- BACKGROUND MUSIC (Autoplay at 40% volume as requested) -->
   <audio id="bg-music" src="./mjuzyk/funday.mp3" autoplay loop preload="auto"></audio>
 
-  <!-- High-visibility Autoplay Banner if Browser Policy Requires Click -->
-  <div id="autoplay-banner" onclick="loginAndStartMusic()">
-    <span>🎵 <strong>Sound Blaster 16:</strong> Click anywhere on screen to enable "funday.mp3" (40% Volume) 🎵</span>
-  </div>
 
-  <!-- Authentic Windows 98 Logon Dialog (Bypasses Browser Autoplay Restrictions with 1 Click) -->
-  <div id="login-dialog" class="app-window window active-window" style="top: 50%; left: 50%; transform: translate(-50%, -50%); width: 380px; z-index: 10002;">
-    <div class="title-bar">
-      <div class="title-bar-text">Welcome to Windows 98</div>
-      <div class="title-bar-controls">
-        <button aria-label="Close" onclick="loginAndStartMusic()"></button>
-      </div>
-    </div>
-    <div class="window-body" style="padding: 12px;">
-      <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 12px;">
-        <div style="font-size: 34px;">🔑</div>
-        <div style="font-size: 11px; line-height: 1.4;">
-          Type a user name and password to log on to Windows 98 and activate <strong>funday.mp3</strong> background music (40% volume).
-        </div>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px;">
-        <div style="display: flex; align-items: center;">
-          <label for="win98-user" style="width: 80px; font-size: 11px;">User name:</label>
-          <input type="text" id="win98-user" value="Administrator" style="flex: 1;" readonly>
-        </div>
-        <div style="display: flex; align-items: center;">
-          <label for="win98-pass" style="width: 80px; font-size: 11px;">Password:</label>
-          <input type="password" id="win98-pass" value="••••••••" style="flex: 1;" readonly>
-        </div>
-      </div>
-      <div style="display: flex; justify-content: flex-end; gap: 8px;">
-        <button class="default" onclick="loginAndStartMusic()" style="min-width: 75px; font-weight: bold;">OK</button>
-        <button onclick="loginAndStartMusic()" style="min-width: 75px;">Cancel</button>
-      </div>
-    </div>
-  </div>
 
   <!-- DESKTOP SHORTCUT ICONS (Multi-column wrapping grid) -->
   <div id="desktop-icons">
@@ -1638,18 +1586,17 @@ Try it live on this page using the "Popup from Hell" button!
        ======================================================== -->
   <script>
     /* ========================================================
-       1. ROBUST AUDIO AUTOPLAY MANAGEMENT (40% volume)
+       1. BACKGROUND MUSIC AUTOPLAY (40% volume)
        ======================================================== */
     const bgAudio = document.getElementById('bg-music');
     const audioStatusText = document.getElementById('audio-status-text');
     const playBtn = document.getElementById('audio-play-btn');
     const trayAudioIcon = document.getElementById('tray-audio-icon');
     const volumeSlider = document.getElementById('volume-slider');
-    const autoplayBanner = document.getElementById('autoplay-banner');
-    const loginDialog = document.getElementById('login-dialog');
 
     // Strict 40% volume as requested
     bgAudio.volume = 0.4;
+    bgAudio.muted = false;
 
     let isAudioPlaying = false;
 
@@ -1662,50 +1609,30 @@ Try it live on this page using the "Popup from Hell" button!
         return p.then(() => {
           isAudioPlaying = true;
           updateAudioUI(true);
-          hideAutoplayBanner();
-          closeLoginDialog();
           removeGlobalGestureListeners();
-        }).catch(err => {
-          console.warn("Autoplay waiting for user interaction:", err.name);
+        }).catch((err) => {
           updateAudioUI(false);
-          showAutoplayBanner();
+          // If browser policy delays playback, resume on the first interaction
         });
       }
       return Promise.resolve();
     }
 
-    function showAutoplayBanner() {
-      if (autoplayBanner) autoplayBanner.style.display = 'block';
-    }
-
-    function hideAutoplayBanner() {
-      if (autoplayBanner) autoplayBanner.style.display = 'none';
-    }
-
-    function closeLoginDialog() {
-      if (loginDialog) loginDialog.style.display = 'none';
-    }
-
-    function loginAndStartMusic() {
-      startMusic();
-      playRetroChime('default');
-      closeLoginDialog();
-    }
-
-    // ONLY valid browser user activation events (NO mousemove, NO wheel!)
-    const activationEvents = ['click', 'pointerdown', 'keydown', 'touchstart'];
+    const activationEvents = ['click', 'pointerdown', 'mousedown', 'keydown', 'touchstart', 'scroll', 'mousemove'];
     function onUserActivation() {
       startMusic();
     }
 
     function addGlobalGestureListeners() {
       activationEvents.forEach(evt => {
+        window.addEventListener(evt, onUserActivation, { passive: true });
         document.addEventListener(evt, onUserActivation, { passive: true });
       });
     }
 
     function removeGlobalGestureListeners() {
       activationEvents.forEach(evt => {
+        window.removeEventListener(evt, onUserActivation);
         document.removeEventListener(evt, onUserActivation);
       });
     }
@@ -3155,17 +3082,12 @@ FUNDAY   MP3     4,194,304  10-28-98 12:35a<br>
 
       const urlParams = new URLSearchParams(window.location.search);
       if (urlParams.get('demo') === '1') {
-        closeLoginDialog();
         openOrFocus('defrag-window');
         spawnWinnerBigPopup();
         spawnLotteryPopup();
-      } else if (urlParams.get('clean') === '1') {
-        closeLoginDialog();
       } else if (urlParams.get('bsod') === '1') {
-        closeLoginDialog();
         triggerBSOD();
       } else if (urlParams.get('dos') === '1') {
-        closeLoginDialog();
         openOrFocus('dos-window');
         setTimeout(() => executeDosCommand('dir'), 100);
       } else {

@@ -2,13 +2,13 @@
 
 <div align="center">
 
-[![Windows 98](https://img.shields.io/badge/OS-Windows%2098-008080?style=for-the-badge&logo=windows-95&logoColor=white)](https://retropop-98.pages.dev)
-[![Internet Explorer](https://img.shields.io/badge/Browser-IE%204.0%20Cyberspace-000080?style=for-the-badge&logo=internet-explorer&logoColor=white)](https://retropop-98.pages.dev)
-[![Modem](https://img.shields.io/badge/Speed-56%2C600%20bps%20V.90-ff9900?style=for-the-badge)](https://retropop-98.pages.dev)
-[![Cloudflare Pages](https://img.shields.io/badge/Deployed%20to-Cloudflare%20Pages-F38020?style=for-the-badge&logo=cloudflare&logoColor=white)](https://retropop-98.pages.dev)
+[![Windows 98](https://img.shields.io/badge/OS-Windows%2098-008080?style=for-the-badge&logo=windows-95&logoColor=white)](https://oldschoolpopups.pages.dev)
+[![Internet Explorer](https://img.shields.io/badge/Browser-IE%204.0%20Cyberspace-000080?style=for-the-badge&logo=internet-explorer&logoColor=white)](https://oldschoolpopups.pages.dev)
+[![Modem](https://img.shields.io/badge/Speed-56%2C600%20bps%20V.90-ff9900?style=for-the-badge)](https://oldschoolpopups.pages.dev)
+[![Cloudflare Pages](https://img.shields.io/badge/Deployed%20to-Cloudflare%20Pages-F38020?style=for-the-badge&logo=cloudflare&logoColor=white)](https://oldschoolpopups.pages.dev)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
 
-### 🌐 **LIVE WEB EXPERIENCE**: [https://retropop-98.pages.dev](https://retropop-98.pages.dev)
+### 🌐 **LIVE WEB EXPERIENCE**: [https://oldschoolpopups.pages.dev](https://oldschoolpopups.pages.dev)
 
 *Put on your headphones, tell your mom not to pick up the kitchen telephone, and dive back into 1998.*
 
@@ -71,7 +71,7 @@ Want retro 1998 chaos everywhere on the web? Download the companion **OldSchoolP
 ![OldSchoolPopups Extension Banner](images/extension-banner.svg)
 
 ### 📦 Download & Install:
-1. Download [**`oldschoolpopups-extension.zip`**](https://retropop-98.pages.dev/oldschoolpopups-extension.zip).
+1. Download [**`oldschoolpopups-extension.zip`**](https://oldschoolpopups.pages.dev/oldschoolpopups-extension.zip).
 2. Unzip the file into a folder on your computer.
 3. In Chrome / Brave / Edge, open `chrome://extensions`.
 4. Turn on **Developer mode** (top-right toggle switch).
@@ -213,10 +213,10 @@ funnypannypagecss/
 This project is deployed to Cloudflare Pages using Cloudflare Wrangler CLI:
 
 ```bash
-wrangler pages deploy . --project-name=retropop-98 --branch=main
+wrangler pages deploy . --project-name=oldschoolpopups --branch=main
 ```
 
-Production URL: **[https://retropop-98.pages.dev](https://retropop-98.pages.dev)**
+Production URL: **[https://oldschoolpopups.pages.dev](https://oldschoolpopups.pages.dev)**
 
 ---
 

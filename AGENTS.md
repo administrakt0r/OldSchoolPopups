@@ -6,7 +6,7 @@ OldSchoolPopups is a nostalgic Windows 98 Cyberspace emulator and chaotic 90s po
 
 - **Frontend**: Pure HTML5, CSS3 (`98.css` styling framework + custom 3D transforms), vanilla ES6+ JavaScript.
 - **Audio Engine**: HTML5 Audio (`mjuzyk/funday.mp3` with strict autoplay fallbacks) + Web Audio API Synthesizer (synthesizing dial-up modem handshaking, DTMF dialing, chimes, and Hydra chords).
-- **Hosting / Deployment**: Cloudflare Pages (`https://retropop-98.pages.dev`).
+- **Hosting / Deployment**: Cloudflare Pages (`https://oldschoolpopups.pages.dev`).
 - **Starter Kit Extension**: `extensionstart/` contains the Manifest V3 starter blueprint for Chrome Web Store packaging.
 
 ## Development and Verification
@@ -22,7 +22,7 @@ OldSchoolPopups is a nostalgic Windows 98 Cyberspace emulator and chaotic 90s po
   ```
 - **Deploy to Cloudflare Pages**:
   ```bash
-  wrangler pages deploy . --project-name=retropop-98 --branch=main
+  wrangler pages deploy . --project-name=oldschoolpopups --branch=main
   ```
 
 ## Baseline Rules

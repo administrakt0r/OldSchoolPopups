@@ -1,6 +1,6 @@
-# Project Guidance: RetroPop 98 Chrome Extension
+# Project Guidance: OldSchoolPopups Chrome Extension
 
-**RetroPop 98** is a Google Chrome Web Store-compliant Manifest V3 extension that spawns nostalgic 1990s Internet Explorer fake popups on active web pages for retro fun and entertainment.
+**OldSchoolPopups** is a Google Chrome Web Store-compliant Manifest V3 extension that spawns nostalgic 1990s Internet Explorer fake popups on active web pages for retro fun and entertainment.
 
 ## Architecture & Technology Stack
 

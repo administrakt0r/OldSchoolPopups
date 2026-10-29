@@ -1,6 +1,6 @@
-# Project Guidance: RetroPop 98
+# Project Guidance: OldSchoolPopups
 
-RetroPop 98 is a nostalgic Windows 98 Cyberspace emulator and chaotic 90s popup simulator featuring Microsoft Internet Explorer 4.0, Tomas Petricek's Hydra "Popup from Hell", animated 3D "Best Viewed With" rotating badges, Sound Blaster 16 audio synthesis, Disk Defragmenter, MS-DOS prompt, Clippy assistant, and a full Blue Screen of Death (BSOD) simulator.
+OldSchoolPopups is a nostalgic Windows 98 Cyberspace emulator and chaotic 90s popup simulator featuring Microsoft Internet Explorer 4.0, Tomas Petricek's Hydra "Popup from Hell", animated 3D "Best Viewed With" rotating badges, Sound Blaster 16 audio synthesis, Disk Defragmenter, MS-DOS prompt, Clippy assistant, full Blue Screen of Death (BSOD) simulator, and companion Manifest V3 Chrome Extension.
 
 ## Stack and Architecture
 

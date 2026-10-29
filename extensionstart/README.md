@@ -1,6 +1,6 @@
-# RetroPop 98: Starter Kit for Chrome Extension
+# OldSchoolPopups: Starter Kit for Chrome Extension
 
-Welcome to the **RetroPop 98** starter package! This directory contains the complete blueprint and agent instructions to build a production-ready, Google Chrome Web Store-compliant Manifest V3 extension.
+Welcome to the **OldSchoolPopups** starter package! This directory contains the complete blueprint and agent instructions to build a production-ready, Google Chrome Web Store-compliant Manifest V3 extension.
 
 ---
 
@@ -13,9 +13,9 @@ Welcome to the **RetroPop 98** starter package! This directory contains the comp
 
 ## Recommended Extension Name
 
-- **Name**: **RetroPop 98**
-- **Full Title**: **RetroPop 98 - 90s Web Nostalgia Popups**
-- **Short Name**: `RetroPop 98`
+- **Name**: **OldSchoolPopups**
+- **Full Title**: **OldSchoolPopups - 90s Web Nostalgia Popups**
+- **Short Name**: `OldSchoolPopups`
 - **Tagline**: *The Nostalgic 90s Web Popup Simulator*
 
 ---

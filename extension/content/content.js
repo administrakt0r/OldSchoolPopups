@@ -1,9 +1,9 @@
 (() => {
-  if (window.__retropop98_injected) return;
-  window.__retropop98_injected = true;
+  if (window.__oldschoolpopups_injected) return;
+  window.__oldschoolpopups_injected = true;
 
   const host = document.createElement('div');
-  host.id = 'retropop98-shadow-host';
+  host.id = 'oldschoolpopups-shadow-host';
   host.style.position = 'fixed';
   host.style.top = '0';
   host.style.left = '0';
@@ -15,7 +15,7 @@
 
   const shadow = host.attachShadow({ mode: 'open' });
   const container = document.createElement('div');
-  container.id = 'retropop-container';
+  container.id = 'oldschoolpopups-container';
   container.style.width = '100%';
   container.style.height = '100%';
   container.style.position = 'relative';

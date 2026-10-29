@@ -1,4 +1,4 @@
-# 🪟 RetroPop 98: Cyberspace 1998 & The Popup Simulator
+# 🪟 OldSchoolPopups: Cyberspace 1998 & The Popup Simulator
 
 <div align="center">
 
@@ -64,14 +64,14 @@
 
 ---
 
-## 🔌 RetroPop 98 Chrome Extension (Popups on ANY Webpage!)
+## 🔌 OldSchoolPopups Chrome Extension (Popups on ANY Webpage!)
 
-Want retro 1998 chaos everywhere on the web? Download the companion **RetroPop 98 Chrome Extension** to inject authentic Windows 98 popups, flashing casino jackpots, and evasive buttons on **Google, Wikipedia, YouTube, Reddit, or any site**!
+Want retro 1998 chaos everywhere on the web? Download the companion **OldSchoolPopups Chrome Extension** to inject authentic Windows 98 popups, flashing casino jackpots, and evasive buttons on **Google, Wikipedia, YouTube, Reddit, or any site**!
 
-![RetroPop 98 Extension Banner](images/extension-banner.svg)
+![OldSchoolPopups Extension Banner](images/extension-banner.svg)
 
 ### 📦 Download & Install:
-1. Download [**`retropop98-extension.zip`**](https://retropop-98.pages.dev/retropop98-extension.zip).
+1. Download [**`oldschoolpopups-extension.zip`**](https://retropop-98.pages.dev/oldschoolpopups-extension.zip).
 2. Unzip the file into a folder on your computer.
 3. In Chrome / Brave / Edge, open `chrome://extensions`.
 4. Turn on **Developer mode** (top-right toggle switch).
@@ -159,10 +159,12 @@ funnypannypagecss/
 ├── AGENTS.md                             # Antigravity project instructions & verification rules
 ├── bestviewedwith.html                   # 3D rotating browser badge component reference
 ├── windows98buttons.html                 # Retro beveled button styles reference
-├── index.html                            # Master RetroPop 98 Windows 98 desktop & popup simulator
+├── index.html                            # Master OldSchoolPopups Windows 98 desktop & popup simulator
+├── oldschoolpopups-extension.zip         # Chrome Extension packaged bundle
 ├── mjuzyk/
 │   └── funday.mp3                        # Background retro track
 ├── images/
+│   ├── extension-banner.svg              # Retro 90s cyber download banner
 │   ├── ad1.png                           # Gateway 2000 Computer Ad
 │   ├── ad2.avif                          # Special offer banner
 │   ├── lotofads.png                      # Ad avalanche banner
@@ -170,12 +172,14 @@ funnypannypagecss/
 ├── screenshots/
 │   ├── desktop-clean.png                 # Clean desktop screenshot
 │   ├── desktop-chaos.png                 # Popup chaos screenshot
+│   ├── extension-banner-view.png         # Extension download banner screenshot
 │   ├── msdos.png                         # MS-DOS prompt screenshot
 │   └── bsod.png                          # Blue Screen of Death screenshot
-└── extensionstart/                       # Blueprint for Manifest V3 Chrome Extension
-    ├── AGENTS.md                         # Manifest V3 extension guidelines
-    ├── prompt.md                         # Antigravity build prompt
-    └── README.md                         # Chrome Web Store packaging instructions
+└── extension/                            # Manifest V3 Chrome Extension source
+    ├── manifest.json                     # Chrome Extension manifest
+    ├── background/                       # Service worker
+    ├── content/                          # Popup injector with Shadow DOM
+    └── popup/                            # Extension toolbar popup interface
 ```
 
 ---
@@ -184,8 +188,8 @@ funnypannypagecss/
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/administrakt0r/retropop98.git
-   cd retropop98
+   git clone https://github.com/administrakt0r/OldSchoolPopups.git
+   cd OldSchoolPopups
    ```
 
 2. **Serve with any local web server**:

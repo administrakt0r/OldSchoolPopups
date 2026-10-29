@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Microsoft Internet Explorer 4.0 - Cyberspace 1998 (RetroPop 98)</title>
+  <title>Microsoft Internet Explorer 4.0 - Cyberspace 1998 (OldSchoolPopups)</title>
   <link rel="stylesheet" href="./98.css">
   <style>
     /* ========================================================
@@ -1290,13 +1290,13 @@
       <marquee class="retro-marquee" behavior="scroll" direction="left" scrollamount="6">
         ★★★ WELCOME TO PANNY'S RETRO CYBER PALACE ★★★ BEST VIEWED AT 800x600 IN 16-BIT COLOR WITH 56K MODEM ★★★ POPUPS ARE LIVE AND CLOSING RANDOMLY! ★★★
       </marquee>
-      <!-- RETROPOP 98 CHROME EXTENSION DOWNLOAD BANNER -->
+      <!-- OLDSCHOOLPOPUPS CHROME EXTENSION DOWNLOAD BANNER -->
       <div class="ext-download-banner">
-        <a href="./retropop98-extension.zip" download="retropop98-extension.zip" title="Click to Download RetroPop 98 Extension (.ZIP)" style="display: block; text-decoration: none;">
-          <img src="./images/extension-banner.svg" alt="RetroPop 98 Chrome Extension Banner - Spawn Popups on Any Webpage" style="width: 100%; max-width: 720px; height: auto; border: 2px solid #ffff00; box-shadow: 0 0 16px rgba(255, 255, 0, 0.6); display: block; margin: 0 auto; transition: transform 0.15s ease-in-out;" onmouseover="this.style.transform='scale(1.01)'" onmouseout="this.style.transform='scale(1)'">
+        <a href="./oldschoolpopups-extension.zip" download="oldschoolpopups-extension.zip" title="Click to Download OldSchoolPopups Extension (.ZIP)" style="display: block; text-decoration: none;">
+          <img src="./images/extension-banner.svg" alt="OldSchoolPopups Chrome Extension Banner - Spawn Popups on Any Webpage" style="width: 100%; max-width: 720px; height: auto; border: 2px solid #ffff00; box-shadow: 0 0 16px rgba(255, 255, 0, 0.6); display: block; margin: 0 auto; transition: transform 0.15s ease-in-out;" onmouseover="this.style.transform='scale(1.01)'" onmouseout="this.style.transform='scale(1)'">
         </a>
         <div style="display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
-          <a href="./retropop98-extension.zip" download="retropop98-extension.zip" class="ext-download-btn">
+          <a href="./oldschoolpopups-extension.zip" download="oldschoolpopups-extension.zip" class="ext-download-btn">
             💾 DIRECT DOWNLOAD EXTENSION (.ZIP)
           </a>
           <button onclick="showInstallHelp()" style="font-size: 11px; padding: 6px 14px; cursor: pointer; font-weight: bold; background: #c0c0c0; border: 2px outset #fff;">
@@ -2696,21 +2696,21 @@ Try it live on this page using the "Popup from Hell" button!
        ======================================================== */
     function downloadExtensionZip() {
       const a = document.createElement('a');
-      a.href = './retropop98-extension.zip';
-      a.download = 'retropop98-extension.zip';
+      a.href = './oldschoolpopups-extension.zip';
+      a.download = 'oldschoolpopups-extension.zip';
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
       playRetroChime('lottery');
-      alert('💾 RetroPop 98 Chrome Extension downloaded!\n\nUnzip the folder and load in chrome://extensions to spawn popups anywhere on the web!');
+      alert('💾 OldSchoolPopups Chrome Extension downloaded!\n\nUnzip the folder and load in chrome://extensions to spawn popups anywhere on the web!');
     }
 
     function showInstallHelp() {
       playRetroChime('default');
       alert(
-        '🔌 HOW TO INSTALL RETROPOP 98 IN CHROME (3 STEPS):\n\n' +
-        '1. Download and unzip "retropop98-extension.zip".\n' +
-        '2. Open Google Chrome and navigate to: chrome://extensions\n' +
+        '🔌 HOW TO INSTALL OLDSCHOOLPOPUPS IN CHROME / BRAVE / EDGE:\n\n' +
+        '1. Download and unzip "oldschoolpopups-extension.zip".\n' +
+        '2. Open your browser and navigate to: chrome://extensions\n' +
         '3. Turn on [Developer mode] in the top-right corner, then click [Load unpacked] and select the unzipped extension folder!\n\n' +
         'Now navigate to Wikipedia, YouTube, or Google and enjoy authentic 1998 popups!'
       );

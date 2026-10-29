@@ -1,14 +1,14 @@
-# Master Antigravity Prompt: RetroPop 98 Chrome Extension
+# Master Antigravity Prompt: OldSchoolPopups Chrome Extension
 
 Copy and paste the entire prompt below into Antigravity to build the complete, production-ready, Chrome Web Store-compliant extension.
 
 ---
 
 ```markdown
-You are an expert Chrome Extension engineer building a production-ready, Manifest V3 Chrome Extension named **"RetroPop 98"** (Short name: `RetroPop 98`, Tagline: *The Nostalgic 90s Web Popup Simulator*).
+You are an expert Chrome Extension engineer building a production-ready, Manifest V3 Chrome Extension named **"OldSchoolPopups"** (Short name: `OldSchoolPopups`, Tagline: *The Nostalgic 90s Web Popup Simulator*).
 
 ### Extension Overview
-RetroPop 98 is a fun, lightweight nostalgia extension that injects fake, harmless, interactive 1990s Windows 98 / Internet Explorer popups on any webpage where it is enabled. It allows users to relive the chaotic golden age of the late-90s World Wide Web with retro graphics, dial-up jokes, evasive buttons, synthesized PC-speaker chimes, and the notorious "Popup from Hell" Hydra effect.
+OldSchoolPopups is a fun, lightweight nostalgia extension that injects fake, harmless, interactive 1990s Windows 98 / Internet Explorer popups on any webpage where it is enabled. It allows users to relive the chaotic golden age of the late-90s World Wide Web with retro graphics, dial-up jokes, evasive buttons, synthesized PC-speaker chimes, and the notorious "Popup from Hell" Hydra effect.
 
 ### Chrome Web Store Compliance & Technical Invariants (Mandatory MV3)
 1. **Manifest Version 3**: Must strictly follow Manifest V3 standards (`manifest_version: 3`).
@@ -54,14 +54,14 @@ retropop98/
 ### Detailed Specification for Each File
 
 #### 1. `manifest.json`
-- `name`: "RetroPop 98 - 90s Web Nostalgia Popups"
-- `short_name`: "RetroPop 98"
+- `name`: "OldSchoolPopups - 90s Web Nostalgia Popups"
+- `short_name`: "OldSchoolPopups"
 - `version`: "1.0.0"
 - `description`: "Relive the golden age of the 1990s web! Spawns hilarious, harmless Windows 98 & Internet Explorer fake popups on any webpage."
 - `manifest_version`: 3
 - `action`:
   - `default_popup`: "popup/popup.html"
-  - `default_title`: "RetroPop 98 Controls"
+  - `default_title`: "OldSchoolPopups Controls"
   - `default_icon`: icons object (16, 32, 48, 128)
 - `background`:
   - `service_worker`: "background/service-worker.js"
